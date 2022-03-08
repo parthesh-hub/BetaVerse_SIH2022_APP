@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaaryakhoj">
         <activity
+            android:name=".LoginPage"
+            android:exported="false" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity2"
             android:exported="false" />
         <activity
