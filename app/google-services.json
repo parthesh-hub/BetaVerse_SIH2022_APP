@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "727918972222",
+    "project_id": "karyacloud",
+    "storage_bucket": "karyacloud.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:727918972222:android:eb46b0f86e00c1090e306f",
+        "android_client_info": {
+          "package_name": "com.example.kaaryakhoj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "727918972222-g9a2h32f3vl0u6ga2fsff1gf6qab37au.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.kaaryakhoj",
+            "certificate_hash": "3ffec516a516abae262e6715a1ade010d158cc2b"
+          }
+        },
+        {
+          "client_id": "727918972222-cmumilp332n7uo2b4mr7ui2j5dkd9i3c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-IkDix-gy_tqpI5toZW9sHi1Bf6qMr5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "727918972222-cmumilp332n7uo2b4mr7ui2j5dkd9i3c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
