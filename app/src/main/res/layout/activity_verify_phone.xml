@@ -50,15 +50,17 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/verifyotpview"
         android:layout_width="409dp"
         android:layout_height="182dp"
         android:layout_marginTop="51dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button">
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/otpverify"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -68,10 +70,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextNumber2" />
+            app:layout_constraintTop_toBottomOf="@+id/otp" />
 
         <EditText
-            android:id="@+id/editTextNumber2"
+            android:id="@+id/otp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -80,7 +82,7 @@
             android:hint="Enter OTP"
             android:inputType="number"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/button3"
+            app:layout_constraintBottom_toTopOf="@+id/otpverify"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"

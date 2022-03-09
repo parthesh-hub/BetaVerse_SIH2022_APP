@@ -19,7 +19,7 @@
             android:name=".SplashScreen"
             android:exported="false" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".Logout"
             android:exported="false" />
         <activity
             android:name=".RegistrationPage"
