@@ -50,11 +50,15 @@ public class LoginPage extends AppCompatActivity {
         loginotp = findViewById(R.id.constraintLayout);
         verifyotp = findViewById(R.id.loginVerifyOTP);
         editTextNumber3 = findViewById(R.id.editTextNumber3);
+        mAuth = FirebaseAuth.getInstance();
+
+
         //Login Button
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loginotp.setVisibility(View.VISIBLE);
+                login.setEnabled(false);
                 db = FirebaseFirestore.getInstance();
                 DocumentReference docRef = db.collection("user").document("+91"+editTextPhone2.getText().toString());
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -82,7 +86,6 @@ public class LoginPage extends AppCompatActivity {
         verifyotp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                login.setEnabled(false);
                 if(TextUtils.isEmpty(editTextNumber3.getText().toString()))
                 {
                     Toast.makeText(LoginPage.this, "Wrong Otp", Toast.LENGTH_SHORT).show();
@@ -107,6 +110,7 @@ public class LoginPage extends AppCompatActivity {
     }
 // getOTP
 private void sendVerificationCode(String phoneNumber) {
+        System.out.println("inside sendveri");
     PhoneAuthOptions options =
             PhoneAuthOptions.newBuilder(mAuth)
                     .setPhoneNumber("+91"+phoneNumber)       // Phone number to verify
@@ -149,9 +153,11 @@ private void sendVerificationCode(String phoneNumber) {
 
     private void verifyCode(String Code) {
       PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
-        System.out.println("Verify phone : "+verificationId+Code);
+        System.out.println("Verify phone : "+verificationId);
+        System.out.println("Code : "+Code);
+        System.out.println("OTP entered : "+editTextNumber3.getText().toString());
 
-        if(Code != editTextNumber3.getText().toString()){
+        if(Code.equals(editTextNumber3.getText().toString())){
             Toast.makeText(LoginPage.this,"OTP Invalid",Toast.LENGTH_SHORT).show();
         }
 

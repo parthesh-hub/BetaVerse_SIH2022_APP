@@ -46,14 +46,6 @@ public class VerifyPhone extends AppCompatActivity {
         getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_verify_phone);
 
-//        button3 = findViewById(R.id.otpverify);
-//        button3.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(VerifyPhone.this,RegistrationPage.class);
-//                startActivity(intent);
-//            }
-//        });
 
         editTextPhone = (EditText) findViewById(R.id.editTextPhone);
         button = (Button) findViewById(R.id.button);
@@ -74,6 +66,7 @@ public class VerifyPhone extends AppCompatActivity {
                 else {
                     String number = editTextPhone.getText().toString();
                     verifyotplayout.setVisibility(View.VISIBLE);
+                    button.setEnabled(false);
 //                    bar.setVisibility(View.VISIBLE);
                     db = FirebaseFirestore.getInstance();
                     DocumentReference docRef = db.collection("user").document("+91"+editTextPhone.getText().toString());
@@ -106,7 +99,6 @@ public class VerifyPhone extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                button.setEnabled(false);
                 if(TextUtils.isEmpty(otp.getText().toString()))
                 {
                     Toast.makeText(VerifyPhone.this, "Wrong Otp", Toast.LENGTH_SHORT).show();
@@ -162,7 +154,7 @@ public class VerifyPhone extends AppCompatActivity {
 //        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
         System.out.println("Verify phone : "+verificationId+Code);
         System.out.print("OTP: "+otp.getText().toString());
-        if(Code != otp.getText().toString()){
+        if(Code.equals(otp.getText().toString())){
             Toast.makeText(VerifyPhone.this,"OTP Invalid",Toast.LENGTH_SHORT).show();
         }
         else {
