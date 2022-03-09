@@ -20,7 +20,9 @@ public class Logout extends AppCompatActivity {
         getSupportActionBar().hide(); // hide the title bar
         setContentView(R.layout.activity_main2);
 
-        btnlogout = findViewById(R.id.logoutbtn);
+
+        // LogOut Button
+        btnlogout = findViewById(R.id.button3);
 
         btnlogout.setOnClickListener(new View.OnClickListener() {
             @Override

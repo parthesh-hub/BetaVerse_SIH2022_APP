@@ -24,6 +24,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,11 +34,11 @@ import java.util.concurrent.TimeUnit;
 public class VerifyPhone extends AppCompatActivity {
     private Button button3;
     private EditText editTextPhone,otp;
-    private Button button,otpverify;
+    Button button,otpverify;
     private FirebaseAuth mAuth;
     private String verificationId;
     private ConstraintLayout verifyotplayout;
-
+    FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +75,26 @@ public class VerifyPhone extends AppCompatActivity {
                     String number = editTextPhone.getText().toString();
                     verifyotplayout.setVisibility(View.VISIBLE);
 //                    bar.setVisibility(View.VISIBLE);
-                    sendVerificationCode(number);
+                    db = FirebaseFirestore.getInstance();
+                    DocumentReference docRef = db.collection("user").document("+91"+editTextPhone.getText().toString());
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                System.out.println("Document: "+document);
+                                if (document.exists()) {
+//                                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                                    System.out.println("Document Snapshot data "+ document.getData());
+                                    Toast.makeText(VerifyPhone.this, "User Already Exists",Toast.LENGTH_SHORT).show();
+                                } else {
+//                                        Log.d(TAG, "No such document");
+                                    sendVerificationCode(number);
+                                }
+                            }
+                        }
+                    });
+//                    sendVerificationCode(number);
 
                 }
 
@@ -81,8 +103,10 @@ public class VerifyPhone extends AppCompatActivity {
         });
 
         otpverify.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
+                button.setEnabled(false);
                 if(TextUtils.isEmpty(otp.getText().toString()))
                 {
                     Toast.makeText(VerifyPhone.this, "Wrong Otp", Toast.LENGTH_SHORT).show();
@@ -137,13 +161,18 @@ public class VerifyPhone extends AppCompatActivity {
     private void verifyCode(String Code) {
 //        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
         System.out.println("Verify phone : "+verificationId+Code);
+        System.out.print("OTP: "+otp.getText().toString());
+        if(Code != otp.getText().toString()){
+            Toast.makeText(VerifyPhone.this,"OTP Invalid",Toast.LENGTH_SHORT).show();
+        }
+        else {
 
-        Intent intent = new Intent(VerifyPhone.this, RegistrationPage.class);
+            Intent intent = new Intent(VerifyPhone.this, RegistrationPage.class);
 //        intent.putExtra("credential", credential);
-        intent.putExtra("verificationId", verificationId);
-        intent.putExtra("Code", Code);
-        startActivity(intent);
-
+            intent.putExtra("verificationId", verificationId);
+            intent.putExtra("Code", Code);
+            startActivity(intent);
+        }
 //        signinbyCredentials(credential);
     }
 
