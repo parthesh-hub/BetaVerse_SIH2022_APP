@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Kaaryakhoj</string>
+    <string name="job_name">getCourse_name()</string>
+    <string name="job_location">getJob_location()</string>
 </resources>

@@ -103,7 +103,7 @@ public class LoginPage extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginPage.this,VerifyPhone.class);
+                Intent intent = new Intent(LoginPage.this,FindJobs.class);
                 startActivity(intent);
             }
         });
