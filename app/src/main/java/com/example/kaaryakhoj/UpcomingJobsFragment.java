@@ -1,19 +1,19 @@
 package com.example.kaaryakhoj;
 
+import android.content.Context;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.PopupMenu;
-import android.widget.SearchView;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,17 +22,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.Console;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
-public class FindJobs extends AppCompatActivity {
+public class UpcomingJobsFragment extends Fragment {
 
+
+    View layoutView;
+    Context thiscontext;
+    LoadingDialog loadingDialog;
     private RecyclerView jobRV;
     FirebaseFirestore db;
     private  JobAdapter adapter;
@@ -41,55 +39,17 @@ public class FindJobs extends AppCompatActivity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.skills_menu,menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        System.out.println(item.getTitle());
-        filter((String) item.getTitle());
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void filter(String title) {
-        ArrayList<jobDetails> filteredlist = new ArrayList<>();
-
-        // running a for loop to compare elements.
-        for (jobDetails item : jobArrayList) {
-            // checking if the entered string matched with any item of our recycler view.
-            //System.out.println(item.getJob_name());
-            if (item.getJob_name().toLowerCase().contains(title.toLowerCase())) {
-                // if the item is matched we are
-                // adding it to our filtered list.
-                filteredlist.add(item);
-            }
-        }
-
-        if (filteredlist.isEmpty()) {
-            // if no item is added in filtered list we are
-            // displaying a toast message as no data found.
-            Toast.makeText(this, "No Data Found..", Toast.LENGTH_SHORT).show();
-        } else {
-            // at last we are passing that filtered
-            // list to our adapter class.
-            System.out.println("Filtered list "+filteredlist.get(0));
-
-            setJobArray(filteredlist);
-            System.out.println("Hello");
-        }
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find_jobs);
-        jobRV = findViewById(R.id.findJobs);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        thiscontext = container.getContext();
+        setHasOptionsMenu(true);
+        loadingDialog = new LoadingDialog(getActivity());
+        layoutView = inflater.inflate(R.layout.fragment_upcoming_jobs, container, false);
+        jobRV = (RecyclerView)layoutView.findViewById(R.id.upcomingJobs);
         buildRecyclerView();
 
+        return layoutView;
     }
 
 
@@ -97,6 +57,7 @@ public class FindJobs extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         // here we have created new array list and added data to it.
         jobArrayList = new ArrayList<>();
+        loadingDialog.startLoadingDialog();
         db.collection("jobs")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -126,20 +87,67 @@ public class FindJobs extends AppCompatActivity {
 //                            }
 //                        }, 2000);
                         setJobArray(jobArrayList);
-
+                        loadingDialog.dismissDialog();
                     }
                 });
     }
+
+
     private void setJobArray(ArrayList<jobDetails> jobList) {
-        JobAdapter courseAdapter = new JobAdapter(this, jobList);
+        JobAdapter courseAdapter = new JobAdapter(getActivity(), jobList);
 
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
 
+        System.out.println("JOBRV: "+jobRV);
         // in below two lines we are setting layoutmanager and adapter to our recycler view.
         jobRV.setLayoutManager(linearLayoutManager);
         jobRV.setAdapter(courseAdapter);
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+//        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.skills_menu,menu);
+
+        super.onCreateOptionsMenu(menu, menuInflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        System.out.println(item.getTitle());
+        filter((String) item.getTitle());
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void filter(String title) {
+        ArrayList<jobDetails> filteredlist = new ArrayList<>();
+
+        // running a for loop to compare elements.
+        for (jobDetails item : jobArrayList) {
+            // checking if the entered string matched with any item of our recycler view.
+            //System.out.println(item.getJob_name());
+            if (item.getJob_name().toLowerCase().contains(title.toLowerCase())) {
+                // if the item is matched we are
+                // adding it to our filtered list.
+                filteredlist.add(item);
+            }
+        }
+
+        if (filteredlist.isEmpty()) {
+            // if no item is added in filtered list we are
+            // displaying a toast message as no data found.
+            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+        } else {
+            // at last we are passing that filtered
+            // list to our adapter class.
+            System.out.println("Filtered list "+filteredlist.get(0));
+
+            setJobArray(filteredlist);
+            System.out.println("Hello");
+        }
     }
 
 }

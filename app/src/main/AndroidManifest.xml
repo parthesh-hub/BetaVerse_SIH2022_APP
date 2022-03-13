@@ -17,6 +17,9 @@
             android:exported="false" />
         <activity
             android:name=".FindJobs"
+            android:exported="false"/>
+        <activity
+            android:name=".FirstPage"
             android:exported="false" />
         <activity
             android:name=".LoginPage"

@@ -1,10 +1,15 @@
 package com.example.kaaryakhoj;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,6 +26,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -28,6 +34,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 public class LoginPage extends AppCompatActivity {
@@ -38,18 +45,21 @@ public class LoginPage extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String verificationId,Code;
     ConstraintLayout loginotp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         getSupportActionBar().hide(); // hide the title bar
+        loadLocale();
         setContentView(R.layout.activity_login_page);
-        Button login,verifyotp ;
-        login = findViewById(R.id.loginGetOTP);
-        editTextPhone2 = findViewById(R.id.editTextPhone2);
-        loginotp = findViewById(R.id.constraintLayout);
-        verifyotp = findViewById(R.id.loginVerifyOTP);
-        editTextNumber3 = findViewById(R.id.editTextNumber3);
+        Button login,verifyotp, chnglang ;
+        login = findViewById(R.id.loginpage_loginGetOTP);
+        editTextPhone2 = findViewById(R.id.loginpage_editTextPhone2);
+        loginotp = findViewById(R.id.loginpage_constraintLayout);
+        verifyotp = findViewById(R.id.loginpage_loginVerifyOTP);
+        editTextNumber3 = findViewById(R.id.loginpage_editTextNumber3);
+        chnglang = findViewById(R.id.loginpage_changelanguage);
         mAuth = FirebaseAuth.getInstance();
 
 
@@ -97,7 +107,7 @@ public class LoginPage extends AppCompatActivity {
         });
 
         //Redirect to Register
-        register = findViewById(R.id.register);
+        register = findViewById(R.id.loginpage_register);
         register.setOnClickListener(new View.OnClickListener() {
 
 
@@ -107,8 +117,97 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        // language translator
+        chnglang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showChangeLanguageDialog();
+            }
+        });
+
+
     }
-// getOTP
+
+
+    // language translation
+    private void showChangeLanguageDialog() {
+
+        //array of languages to display in dialogbox
+        final String[] listItems = {"English", "हिन्दी", "मराठी", "ગુજરાતી", "தமிழ்", "తెలుగు"};
+
+        AlertDialog.Builder mBuider = new AlertDialog.Builder(LoginPage.this);
+        mBuider.setTitle("Choose Language...");
+        mBuider.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                if (i==0){
+                    //English
+                    setLocale("en");
+                    recreate();
+                }
+                else if (i==1){
+                    //hindi
+                    setLocale("hi");
+                    recreate();
+                }
+                else if (i==2) {
+                    //marathi
+                    setLocale("mr");
+                    recreate();
+                }
+                else if (i==3) {
+                    //gujarati
+                    setLocale("gu");
+                    recreate();
+                }
+                else if (i==4) {
+                    //tamil
+                    setLocale("ta");
+                    recreate();
+                }
+                else if (i==5) {
+                    //telugu
+                    setLocale("te");
+                    recreate();
+                }
+
+                //dismiss alert dialog box when language is selected
+                dialogInterface.dismiss();
+            }
+        });
+
+        AlertDialog mDialog = mBuider.create();
+        //show alert dialog
+        mDialog.show();
+
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        //save data to shared prefernces
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+
+    //load language stored in Shared Preferences
+    public void loadLocale(){
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang","");
+        setLocale(language);
+    }
+
+
+    // getOTP
 private void sendVerificationCode(String phoneNumber) {
         System.out.println("inside sendveri");
     PhoneAuthOptions options =
@@ -157,7 +256,7 @@ private void sendVerificationCode(String phoneNumber) {
         System.out.println("Code : "+Code);
         System.out.println("OTP entered : "+editTextNumber3.getText().toString());
 
-        if(Code.equals(editTextNumber3.getText().toString())){
+        if (!(Code.equals(editTextNumber3.getText().toString()))){
             Toast.makeText(LoginPage.this,"OTP Invalid",Toast.LENGTH_SHORT).show();
         }
 
@@ -181,5 +280,27 @@ private void sendVerificationCode(String phoneNumber) {
                 });
 
     }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        System.out.println("Hello");
+        System.out.println(currentUser);
+
+        if(currentUser!=null)
+        {
+            startActivity(new Intent(LoginPage.this, Logout.class));
+            finish();
+        }
+
+
+    }
+
+
+
+
 
 }

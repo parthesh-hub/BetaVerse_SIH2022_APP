@@ -1,5 +1,29 @@
 <resources>
-    <string name="app_name">Kaaryakhoj</string>
-    <string name="job_name">getCourse_name()</string>
-    <string name="job_location">getJob_location()</string>
+    <string name="job_name" translatable="false">getCourse_name()</string>
+    <string name="job_location" translatable="false">getJob_location()</string>
+    <string name="app_name" translatable="false">Kaaryakhoj</string>
+    <string name="loginpage_phone_number">Phone Number</string>
+    <string name="loginpage_login">Login</string>
+    <string name="loginpage_get_otp">Get OTP</string>
+    <string name="loginpage_not_registered">Not Registered?</string>
+    <string name="loginpage_register_here">Register Here</string>
+    <string name="loginpage_enter_otp">Enter OTP</string>
+    <string name="loginpage_loginbtn">Login</string>
+    <string name="loginpage_changelanguage">Change Language</string>
+    <string name="registrationpage_register">Register</string>
+    <string name="registrationpage_enter_full_name">Enter Full Name</string>
+    <string name="registrationpage_enter_address">Enter Address</string>
+    <string name="registrationpage_enter_aadhar_number">Enter Aadhar Number</string>
+    <string name="registrationpage_sign_up">Sign Up</string>
+    <string name="verifyphonepage_register">Register</string>
+    <string name="verifyphonepage_enter_phone_number">Enter Phone Number</string>
+    <string name="verifyphonepage_send_otp">Send OTP</string>
+    <string name="verifyphonepage_verify">VERIFY</string>
+    <string name="verifyphonepage_enter_otp">Enter OTP</string>
+    <string name="title_activity_my_jobs" translatable="false">MyJobs</string>
+    <string name="title_home" translatable="false">Home</string>
+    <string name="title_dashboard" translatable="false">Dashboard</string>
+    <string name="title_notifications" translatable="false">Notifications</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+
 </resources>

@@ -5,6 +5,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.text.TextUtils;
 
 import android.content.Intent;
@@ -28,6 +31,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 
@@ -39,11 +43,13 @@ public class VerifyPhone extends AppCompatActivity {
     private String verificationId;
     private ConstraintLayout verifyotplayout;
     FirebaseFirestore db;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         getSupportActionBar().hide(); // hide the title bar
+        loadLocale();
         setContentView(R.layout.activity_verify_phone);
 
 
@@ -110,6 +116,29 @@ public class VerifyPhone extends AppCompatActivity {
 
     }
 
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        //save data to shared prefernces
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+
+    //load language stored in Shared Preferences
+    public void loadLocale(){
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang","");
+        setLocale(language);
+    }
+
+
     private void sendVerificationCode(String phoneNumber) {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
@@ -154,7 +183,7 @@ public class VerifyPhone extends AppCompatActivity {
 //        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
         System.out.println("Verify phone : "+verificationId+Code);
         System.out.print("OTP: "+otp.getText().toString());
-        if(Code.equals(otp.getText().toString())){
+        if(!(Code.equals(otp.getText().toString()))){
             Toast.makeText(VerifyPhone.this,"OTP Invalid",Toast.LENGTH_SHORT).show();
         }
         else {

@@ -19,6 +19,8 @@ import java.util.Map;
 
 public class DetailsActivity extends AppCompatActivity {
 
+    LoadingDialog loadingDialog;
+
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +28,12 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
 
      //   JobModel model = (JobModel)getIntent().getSerializableExtra("model");
-
+        loadingDialog = new LoadingDialog(DetailsActivity.this);
         Bundle bundle = getIntent().getExtras();
         String jobId = bundle.getString("JobId");
         DocumentReference docRef = db.collection("jobs").document(jobId);
 
+        loadingDialog.startLoadingDialog();
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -56,6 +59,7 @@ public class DetailsActivity extends AppCompatActivity {
                 } else {
                     System.out.println("Error");
                 }
+                loadingDialog.dismissDialog();
             }
         });
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kaaryakhoj</string>
+    <string name="loginpage_phone_number">फ़ोन नंबर</string>
+    <string name="loginpage_login">लॉग इन</string>
+    <string name="loginpage_loginbtn">लॉग इन करें</string>
+    <string name="loginpage_get_otp">ओटीपी प्राप्त करें</string>
+    <string name="loginpage_not_registered">पंजीकृत नहीं है?</string>
+    <string name="loginpage_register_here">यहां रजिस्टर करें</string>
+    <string name="loginpage_enter_otp">ओटीपी दर्ज करें</string>
+    <string name="loginpage_changelanguage">भाषा बदलें</string>
+    <string name="registrationpage_register">रजिस्टर करें</string>
+    <string name="registrationpage_enter_full_name">पूरा नाम दर्ज करें</string>
+    <string name="registrationpage_enter_address">पता लिखिए</string>
+    <string name="registrationpage_enter_aadhar_number">आधार नंबर दर्ज करें</string>
+    <string name="registrationpage_sign_up">साइन अप करें</string>
+    <string name="verifyphonepage_enter_otp">ओटीपी दर्ज करें</string>
+    <string name="verifyphonepage_register">रजिस्टर करें</string>
+    <string name="verifyphonepage_verify">सत्यापित करें</string>
+    <string name="verifyphonepage_send_otp">OTP भेजें</string>
+    <string name="verifyphonepage_enter_phone_number">फोन नंबर दर्ज</string>
+</resources>
