@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                startActivity(new Intent(MainActivity.this, TutorialVideoList.class));
+                startActivity(new Intent(MainActivity.this, FirstPage.class));
                 finish();
             }
         }, 4000);

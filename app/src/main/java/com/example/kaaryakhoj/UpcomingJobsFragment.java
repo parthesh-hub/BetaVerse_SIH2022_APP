@@ -33,7 +33,7 @@ public class UpcomingJobsFragment extends Fragment {
     LoadingDialog loadingDialog;
     private RecyclerView jobRV;
     FirebaseFirestore db;
-    private  JobAdapter adapter;
+    private  MyJobsAdapter adapter;
     // Arraylist for storing data
     private ArrayList<jobDetails> jobArrayList;
 
@@ -94,7 +94,7 @@ public class UpcomingJobsFragment extends Fragment {
 
 
     private void setJobArray(ArrayList<jobDetails> jobList) {
-        JobAdapter courseAdapter = new JobAdapter(getActivity(), jobList);
+        MyJobsAdapter courseAdapter = new MyJobsAdapter(getActivity(), jobList);
 
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical

@@ -7,18 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
-public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder> {
+public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.Viewholder> {
 
     private Context context;
     private ArrayList<jobDetails> jobsArrayList;
 
     // Constructor
-    public JobAdapter(Context context, ArrayList<jobDetails> jobsArrayList) {
+    public MyJobsAdapter(Context context, ArrayList<jobDetails> jobsArrayList) {
         this.context = context;
         this.jobsArrayList = jobsArrayList;
     }
@@ -34,26 +34,27 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder> {
 
     @NonNull
     @Override
-    public JobAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyJobsAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // to inflate the layout for each item of recycler view.
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.findjobs_card_layout, parent, false);
         return new Viewholder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull JobAdapter.Viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull MyJobsAdapter.Viewholder holder, int position) {
         // to set data to textview and imageview of each card layout
         jobDetails model = jobsArrayList.get(position);
-
         holder.jobName.setText(model.getJob_name());
         holder.jobLocation.setText(model.getJob_location());
-
         holder.jobImage.setImageResource(model.getJob_image());
+
+
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context,DetailsActivity.class);
+
+                Intent intent = new Intent(context,MyJobsDetailsActivity.class);
                 intent.putExtra("JobId",model.getJob_id());
                 context.startActivity(intent);
                 //Toast.makeText(context,model.getJob_id(),Toast.LENGTH_SHORT).show();

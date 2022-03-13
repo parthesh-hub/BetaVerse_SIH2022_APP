@@ -6,31 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".TutorialVideoList">
 
+
     <Button
         android:id="@+id/showtutorial"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="126dp"
-        android:layout_marginTop="213dp"
-        android:layout_marginEnd="127dp"
-        android:layout_marginBottom="470dp"
+        android:layout_marginTop="224dp"
         android:text="Show Tutorial"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Painting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="177dp"
-        android:layout_marginTop="135dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginBottom="59dp"
-        android:text="Painting"
-        app:layout_constraintBottom_toTopOf="@+id/showtutorial"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,12 +22,10 @@
         android:id="@+id/showquiz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="133dp"
-        android:layout_marginBottom="289dp"
+        android:layout_marginTop="108dp"
         android:text="Show Quiz"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/showtutorial" />
 </androidx.constraintlayout.widget.ConstraintLayout>

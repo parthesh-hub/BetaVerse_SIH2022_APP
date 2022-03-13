@@ -26,7 +26,6 @@ public class MyJobsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        System.out.println("Inside Oncreate view");
         layoutview =  inflater.inflate(R.layout.fragment_myjobs, container, false);
         TabLayout tabLayout = (TabLayout) layoutview.findViewById(R.id.myjobstab);
         ViewPager viewPager = (ViewPager) layoutview.findViewById(R.id.myjobsviewpager);

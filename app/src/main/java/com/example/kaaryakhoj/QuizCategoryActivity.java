@@ -14,7 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
-import static com.example.kaaryakhoj.TutorialVideoList.catList;
+import static com.example.kaaryakhoj.TutorialsFragment.catList;
 
 public class QuizCategoryActivity extends AppCompatActivity {
 
@@ -25,6 +25,8 @@ public class QuizCategoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_category);
 
+
+        System.out.println("yes");
 //        Toolbar toolbar = findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 //        getSupportActionBar().setTitle("Categories");
@@ -32,9 +34,10 @@ public class QuizCategoryActivity extends AppCompatActivity {
 
         catGrid = findViewById(R.id.catGridview);
 
+        System.out.println("yes2");
         CatGridAdapter adapter = new CatGridAdapter(catList);
         catGrid.setAdapter(adapter);
-
+        System.out.println("yes3");
 
     }
 

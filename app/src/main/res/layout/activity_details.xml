@@ -12,96 +12,550 @@
     android:layout_height="match_parent"
     tools:context=".DetailsActivity"
     android:orientation="vertical"
-    android:padding="40dp">
+    android:paddingTop="25dp"
+    android:paddingBottom="25dp"
+    >
 
-    <TextView
-        android:id="@+id/textview1"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/details_jobTypeLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="20dp"
-        android:text="Job Name:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/jobName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-65dp"
-        android:text="TANVI"
-        android:layout_marginLeft="100dp"
-        android:textColor="@color/black"
-        android:textSize="30sp" />
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="20dp"
-        android:text="Job Location:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/jobLocation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="-65dp"
-        android:text="TANVI"
-        android:layout_marginLeft="100dp"
-        android:textSize="30sp"/>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="20dp"
-        android:text="Job Description:"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-    <TextView
-        android:id="@+id/jobDesc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:layout_gravity="center_horizontal"
-        android:text="TANVI"
-        android:textSize="30sp"/>
-
-    <TextView
-            android:id="@+id/wage"
-            android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/details_strjobType"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Job Type"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_toEndOf="@+id/details_jobTypeLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            tools:ignore="NotSibling" />
+
+        <TextView
+            android:id="@+id/details_jobType"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/details_strjobType"
+            android:layout_marginBottom="10dp"
             android:text="TANVI"
-            android:textSize="30sp"/>
+            android:textAlignment="center"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/details_jobDescLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+        >
+
+        <TextView
+            android:id="@+id/details_strjobDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_toEndOf="@+id/details_jobDescLayout"
+            android:text="Job Description"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            app:layout_constraintHorizontal_bias="0.5"
+            tools:ignore="NotSibling" />
+
+        <TextView
+            android:id="@+id/details_jobDesc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/details_strjobDesc"
+            android:layout_marginBottom="10dp"
+            android:text="TANVI"
+            android:textAlignment="center"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/details_companyNameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical">
+        >
+
+        <TextView
+            android:id="@+id/details_strcompanyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Company Name"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_toEndOf="@+id/details_companyNameLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            tools:ignore="NotSibling" />
+
+        <TextView
+            android:id="@+id/details_companyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="TANVI"
+            android:textAlignment="center"
+            android:layout_below="@+id/details_strcompanyName"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/details_wagelocationLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/details_dailyWageLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/details_strdailyWage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/details_dailyWageLayout"
+                android:text="Daily Wage"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="0.5"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/details_dailyWage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="TANVI"
+                android:textAlignment="center"
+                android:layout_below="@+id/details_strdailyWage"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/details_locationLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/details_strLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="Location"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_toEndOf="@+id/details_locationLayout"
+                app:layout_constraintHorizontal_bias="0.5"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/details_Location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="TANVI"
+                android:textAlignment="center"
+                android:layout_below="@+id/details_strLocation"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/details_dateLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/details_startdateLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/details_strstartDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/details_startdateLayout"
+                android:text="Start Date"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="0.5"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/details_startDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="TANVI"
+                android:textAlignment="center"
+                android:layout_below="@+id/details_strstartDate"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/details_enddateLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/details_strendDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="End Date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_toEndOf="@+id/details_enddateLayout"
+                app:layout_constraintHorizontal_bias="0.5"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/details_endDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="TANVI"
+                android:textAlignment="center"
+                android:layout_below="@+id/details_strendDate"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/details_timeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+
+        <RelativeLayout
+            android:id="@+id/details_starttimeLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/details_strstartTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/details_starttimeLayout"
+                android:text="Start Time"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintHorizontal_bias="0.5"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/details_startTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="TANVI"
+                android:textAlignment="center"
+                android:layout_below="@+id/details_strstartTime"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/details_endtimeLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            >
+
+            <TextView
+                android:id="@+id/details_strendTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:text="End Date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:layout_toEndOf="@+id/details_enddateLayout"
+                app:layout_constraintHorizontal_bias="0.5"
+                tools:ignore="NotSibling" />
+
+            <TextView
+                android:id="@+id/details_endTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="TANVI"
+                android:textAlignment="center"
+                android:layout_below="@+id/details_strendTime"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/details_availabilityLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/details_strAvailabiltiy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Availibility"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_toEndOf="@+id/details_availabilityLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            tools:ignore="NotSibling" />
+
+        <TextView
+            android:id="@+id/details_availabiltiy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="TANVI"
+            android:textAlignment="center"
+            android:layout_below="@+id/details_strAvailabiltiy"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/details_jobRequirementsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/details_strjobRequirements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Job Requirements"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_toEndOf="@+id/details_jobRequirementsLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            tools:ignore="NotSibling" />
+
+        <TextView
+            android:id="@+id/details_jobRequirements"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="TANVI"
+            android:textAlignment="center"
+            android:layout_below="@+id/details_strjobRequirements"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/details_jobAddressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/details_strjobAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Address"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_toEndOf="@+id/details_jobContactLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            tools:ignore="NotSibling" />
+
+        <TextView
+            android:id="@+id/details_jobAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="TANVI"
+            android:textAlignment="center"
+            android:layout_below="@+id/details_strjobAddress"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/details_jobContactLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/details_strjobContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:text="Contact"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:layout_toEndOf="@+id/details_jobContactLayout"
+            app:layout_constraintHorizontal_bias="0.5"
+            tools:ignore="NotSibling" />
+
+        <TextView
+            android:id="@+id/details_jobContact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="TANVI"
+            android:textAlignment="center"
+            android:layout_below="@+id/details_strjobContact"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+
+
+
+
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_marginBottom="20dp"
         android:text="Apply" />
 

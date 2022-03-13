@@ -54,7 +54,7 @@ public class CatGridAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
 
-                TutorialVideoList.selected_cat_index = position;
+                TutorialsFragment.selected_cat_index = position;
                 Intent intent = new Intent(parent.getContext(),SetsActivity.class);
                 parent.getContext().startActivity(intent);
             }

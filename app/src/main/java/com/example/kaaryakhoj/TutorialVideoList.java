@@ -32,15 +32,6 @@ public class TutorialVideoList extends AppCompatActivity {
 
         firestore = FirebaseFirestore.getInstance();
 
-//        new Thread() {
-//            public void run() {
-//                // sleep(3000);
-//
-//                loadData();
-//
-//
-//            }
-//        }.start();
 
         Button showtutorial = (Button)findViewById(R.id.showtutorial);
         showtutorial.setOnClickListener(new View.OnClickListener() {

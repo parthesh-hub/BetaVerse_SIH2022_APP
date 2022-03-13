@@ -1,8 +1,8 @@
 package com.example.kaaryakhoj;
 
 import static com.example.kaaryakhoj.SetsActivity.setsIDs;
-import static com.example.kaaryakhoj.TutorialVideoList.catList;
-import static com.example.kaaryakhoj.TutorialVideoList.selected_cat_index;
+import static com.example.kaaryakhoj.TutorialsFragment.catList;
+import static com.example.kaaryakhoj.TutorialsFragment.selected_cat_index;
 
 import android.animation.Animator;
 import android.app.Dialog;

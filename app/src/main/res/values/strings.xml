@@ -1,5 +1,6 @@
 <resources>
     <string name="job_name" translatable="false">getCourse_name()</string>
+    <string name="strjobname" translatable="false">Hello</string>
     <string name="job_location" translatable="false">getJob_location()</string>
     <string name="app_name" translatable="false">Kaaryakhoj</string>
     <string name="loginpage_phone_number">Phone Number</string>
@@ -25,8 +26,16 @@
     <string name="title_dashboard" translatable="false">Dashboard</string>
     <string name="title_notifications" translatable="false">Notifications</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
-    <string name="qr_code">qr_code</string>
-    <string name="generate_qr_code">generate_qr_coe</string>
-    <string name="qr_code_download">Download QR Code</string>
+    <string name="qr_code" translatable="false">qr_code</string>
+    <string name="generate_qr_code" translatable="false">generate_qr_coe</string>
+    <string name="qr_code_download" translatable="false">Download QR Code</string>
+    <string name="strjob_companyName" translatable="false">Company :</string>
+    <string name="job_companyName" translatable="false">getCompany_name()</string>
+    <string name="strjob_startdate" translatable="false">Start Date :</string>
+    <string name="job_startdate" translatable="false">getStart_date()</string>
+    <string name="strjob_enddate" translatable="false">End Date :</string>
+    <string name="job_enddate" translatable="false">getEnd_date()</string>
+    <string name="strjob_dailywage" translatable="false">Daily Wage :</string>
+    <string name="job_dailywage" translatable="false">getWage()</string>
 
 </resources>

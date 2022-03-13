@@ -21,8 +21,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.kaaryakhoj.TutorialVideoList.catList;
-import static com.example.kaaryakhoj.TutorialVideoList.selected_cat_index;
+import static com.example.kaaryakhoj.TutorialsFragment.catList;
+import static com.example.kaaryakhoj.TutorialsFragment.selected_cat_index;
 
 public class SetsActivity extends AppCompatActivity {
 

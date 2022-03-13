@@ -1,13 +1,15 @@
 package com.example.kaaryakhoj;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -15,23 +17,30 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
-public class DetailsActivity extends AppCompatActivity {
+public class MyJobsDetailsActivity extends AppCompatActivity {
 
     LoadingDialog loadingDialog;
+    RecyclerView recyclerView;
+    AttendanceAdapterClass attendanceAdapter;
 
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details);
+        setContentView(R.layout.activity_my_jobs_details);
 
-        Button btn = findViewById(R.id.button);
-     //   JobModel model = (JobModel)getIntent().getSerializableExtra("model");
-        loadingDialog = new LoadingDialog(DetailsActivity.this);
+
+        Button btn = findViewById(R.id.myjobs_generateQR);
+        //   JobModel model = (JobModel)getIntent().getSerializableExtra("model");
+        loadingDialog = new LoadingDialog(MyJobsDetailsActivity.this);
         Bundle bundle = getIntent().getExtras();
         String jobId = bundle.getString("JobId");
+
         DocumentReference docRef = db.collection("jobs").document(jobId);
 
         loadingDialog.startLoadingDialog();
@@ -65,27 +74,53 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
 
-    btn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(DetailsActivity.this,Generate_QR.class);
-            intent.putExtra("UserName","Sanket");
-            intent.putExtra("UpiId","sanket@upi");
-            intent.putExtra("ImageId",jobId);
-            startActivity(intent);
-        }
-    });
+        recyclerView = findViewById(R.id.attendance_recycler_view);
+
+        setRecyclerView();
+
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyJobsDetailsActivity.this,Generate_QR.class);
+                intent.putExtra("UserName","Sanket");
+                intent.putExtra("UpiId","sanket@upi");
+                intent.putExtra("ImageId",jobId);
+                startActivity(intent);
+            }
+        });
 
     }
+
+    private void setRecyclerView() {
+
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        attendanceAdapter = new AttendanceAdapterClass(this, getList());
+        recyclerView.setAdapter(attendanceAdapter);
+
+    }
+
+    private List<AttendanceModel> getList() {
+        List<AttendanceModel> att_list = new ArrayList<>();
+        att_list.add(new AttendanceModel("01-02-2022","09:00","17:00","OnTime"));
+        att_list.add(new AttendanceModel("02-02-2022","09:10","17:00","OnTime"));
+        att_list.add(new AttendanceModel("03-02-2022","09:30","17:30","Late"));
+        att_list.add(new AttendanceModel("04-02-2022","10:00","18:00","Late"));
+
+        return att_list;
+    }
+
+
     public void setDisplay(jobDetails model){
-        TextView jobName = findViewById(R.id.details_strjobType);
-        TextView jobLocation = findViewById(R.id.details_Location);
-        TextView jobDesc = findViewById(R.id.details_jobDesc);
-        TextView wage = findViewById(R.id.details_dailyWage);
+        TextView jobName = findViewById(R.id.myjobs_details_strjobType);
+        TextView jobLocation = findViewById(R.id.myjobs_details_Location);
+        TextView jobDesc = findViewById(R.id.myjobs_details_jobDesc);
+        TextView wage = findViewById(R.id.myjobs_details_dailyWage);
 
         jobName.setText(model.getJob_name());
         jobLocation.setText(model.getJob_location()+"");
         jobDesc.setText(model.getJob_desc()+"");
-       wage.setText(model.getWage());
+        wage.setText(model.getWage());
     }
 }

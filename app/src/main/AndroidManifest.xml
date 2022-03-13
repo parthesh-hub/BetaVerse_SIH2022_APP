@@ -13,6 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaaryakhoj">
         <activity
+
             android:name=".ScoreActivity"
             android:exported="false" />
         <activity
@@ -29,6 +30,9 @@
             android:exported="false" />
         <activity
             android:name=".TutorialVideoList"
+            android:exported="false"/>
+        <activity
+            android:name=".MyJobsDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".Generate_QR"
