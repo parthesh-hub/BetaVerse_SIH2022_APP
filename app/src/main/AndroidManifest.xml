@@ -13,11 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaaryakhoj">
         <activity
+            android:name=".Generate_QR"
+            android:exported="false" />
+        <activity
             android:name=".DetailsActivity"
             android:exported="false" />
         <activity
             android:name=".FindJobs"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".FirstPage"
             android:exported="false" />

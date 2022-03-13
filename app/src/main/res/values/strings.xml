@@ -25,5 +25,8 @@
     <string name="title_dashboard" translatable="false">Dashboard</string>
     <string name="title_notifications" translatable="false">Notifications</string>
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="qr_code">qr_code</string>
+    <string name="generate_qr_code">generate_qr_coe</string>
+    <string name="qr_code_download">Download QR Code</string>
 
 </resources>

@@ -1,19 +1,19 @@
 package com.example.kaaryakhoj;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Map;
 
@@ -27,6 +27,7 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
+        Button btn = findViewById(R.id.button);
      //   JobModel model = (JobModel)getIntent().getSerializableExtra("model");
         loadingDialog = new LoadingDialog(DetailsActivity.this);
         Bundle bundle = getIntent().getExtras();
@@ -64,7 +65,16 @@ public class DetailsActivity extends AppCompatActivity {
         });
 
 
-
+    btn.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(DetailsActivity.this,Generate_QR.class);
+            intent.putExtra("UserName","Sanket");
+            intent.putExtra("UpiId","sanket@upi");
+            intent.putExtra("ImageId",jobId);
+            startActivity(intent);
+        }
+    });
 
     }
     public void setDisplay(jobDetails model){
