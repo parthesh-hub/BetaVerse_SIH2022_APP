@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder> {
 
@@ -44,8 +44,8 @@ public class JobAdapter extends RecyclerView.Adapter<JobAdapter.Viewholder> {
     public void onBindViewHolder(@NonNull JobAdapter.Viewholder holder, int position) {
         // to set data to textview and imageview of each card layout
         jobDetails model = jobsArrayList.get(position);
-        holder.jobName.setText(model.getJob_name());
-        holder.jobLocation.setText("" + model.getJob_location());
+        holder.jobName.setText("Name "+model.getJob_name());
+        holder.jobLocation.setText("Location " + model.getJob_location());
         holder.jobImage.setImageResource(model.getJob_image());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

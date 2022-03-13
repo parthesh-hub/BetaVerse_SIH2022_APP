@@ -1,10 +1,5 @@
 package com.example.kaaryakhoj;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,14 +7,17 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.view.View;
-import android.os.Handler;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -113,7 +111,7 @@ public class LoginPage extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginPage.this,FindJobs.class);
+                Intent intent = new Intent(LoginPage.this,TutorialVideoList.class);
                 startActivity(intent);
             }
         });
