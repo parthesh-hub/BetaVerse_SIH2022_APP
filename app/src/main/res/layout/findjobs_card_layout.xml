@@ -27,7 +27,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:context=".FirstPage">
 
         <!--ImageVIew to display our Course Image-->
         <ImageView
@@ -95,7 +96,7 @@
                 android:layout_toEndOf="@id/companynamelayout"
                 android:drawablePadding="2dp"
                 android:textStyle="bold"
-                android:text="@string/strjob_companyName"
+                android:text="@string/card_strjob_companyName"
                 android:textColor="@color/black"
                 tools:ignore="NotSibling" />
 
@@ -127,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/startdateLayout"
-                android:text="@string/strjob_startdate"
+                android:text="@string/card_strjob_startdate"
                 android:layout_marginStart="10dp"
                 android:drawablePadding="2dp"
                 android:textSize="15sp"
@@ -165,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/endDateLayout"
-                android:text="@string/strjob_enddate"
+                android:text="@string/card_strjob_enddate"
                 android:textColor="@color/black"
                 android:layout_marginStart="10dp"
                 android:drawablePadding="2dp"
@@ -207,7 +208,7 @@
                 android:drawablePadding="2dp"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:text="@string/strjob_dailywage"
+                android:text="@string/card_strjob_dailywage"
                 android:textColor="@color/black"
                 tools:ignore="NotSibling" />
 
@@ -218,9 +219,9 @@
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@id/strdailyWage"
                 android:drawablePadding="2dp"
-                android:textSize="15sp"
                 android:text="@string/job_dailywage"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="15sp" />
         </RelativeLayout>
 
     </RelativeLayout>

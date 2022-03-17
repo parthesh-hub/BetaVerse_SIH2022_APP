@@ -37,8 +37,8 @@ import java.util.concurrent.TimeUnit;
 
 public class VerifyPhone extends AppCompatActivity {
     private Button button3;
-    private EditText editTextPhone,otp;
-    Button button,otpverify;
+    private EditText phonenumber,otp;
+    Button getotpbutton,otpverifybtn;
     private FirebaseAuth mAuth;
     private String verificationId;
     private ConstraintLayout verifyotplayout;
@@ -53,29 +53,29 @@ public class VerifyPhone extends AppCompatActivity {
         setContentView(R.layout.activity_verify_phone);
 
 
-        editTextPhone = (EditText) findViewById(R.id.editTextPhone);
-        button = (Button) findViewById(R.id.button);
-        otp = (EditText) findViewById(R.id.otp);
-        otpverify = (Button) findViewById(R.id.otpverify);
+        phonenumber = (EditText) findViewById(R.id.verifyphonepage_phone);
+        getotpbutton = (Button) findViewById(R.id.verifyphonepage_getOtpbtn);
+        otp = (EditText) findViewById(R.id.verifyphonepage_enterotp);
+        otpverifybtn = (Button) findViewById(R.id.verifyphonepage_verifyotpbtn);
         mAuth = FirebaseAuth.getInstance();
         System.out.println("mAuth inside verification page"+ mAuth);
-        verifyotplayout = (ConstraintLayout) findViewById(R.id.verifyotpview);
+        verifyotplayout = (ConstraintLayout) findViewById(R.id.constraintLayout2);
 
 
-        button.setOnClickListener(new View.OnClickListener() {
+        getotpbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(editTextPhone.getText().toString()))
+                if(TextUtils.isEmpty(phonenumber.getText().toString()))
                 {
                     Toast.makeText(VerifyPhone.this, "Enter Valid Phone No.", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    String number = editTextPhone.getText().toString();
+                    String number = phonenumber.getText().toString();
                     verifyotplayout.setVisibility(View.VISIBLE);
-                    button.setEnabled(false);
+                    getotpbutton.setEnabled(false);
 //                    bar.setVisibility(View.VISIBLE);
                     db = FirebaseFirestore.getInstance();
-                    DocumentReference docRef = db.collection("user").document("+91"+editTextPhone.getText().toString());
+                    DocumentReference docRef = db.collection("user").document("+91"+phonenumber.getText().toString());
                     docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -101,7 +101,7 @@ public class VerifyPhone extends AppCompatActivity {
             }
         });
 
-        otpverify.setOnClickListener(new View.OnClickListener() {
+        otpverifybtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {

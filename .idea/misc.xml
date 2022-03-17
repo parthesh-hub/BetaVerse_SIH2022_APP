@@ -3,35 +3,57 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/drawable/app_bar.xml" value="0.2215" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/drawable/bottomnavbar.xml" value="0.2215" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/drawable/drawable_login.xml" value="0.2345" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/drawable/frame_2.xml" value="0.2345" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/drawable/ic_baseline_favorite_24.xml" value="0.1555" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.2555" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2555" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/drawable/image_1.xml" value="0.2345" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/drawable/loginpage_constraintlayout.xml" value="0.2555" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/drawable/loginpagebtns.xml" value="0.2555" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/font/.xml" value="0.23001282599401454" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/font/oxygen.xml" value="0.23001282599401454" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_details.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_find_jobs.xml" value="0.20521590423257802" />
-        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_first_page.xml" value="0.20521590423257802" />
-        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_login_page.xml" value="0.18125" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_first_page.xml" value="0.264" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_generate_qr.xml" value="0.264" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_login_page.xml" value="0.2" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_main.xml" value="0.134375" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_main2.xml" value="0.17135416666666667" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_my_jobs.xml" value="0.20521590423257802" />
-        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_my_jobs_details.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_my_jobs_details.xml" value="0.4" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_my_jobs_upcoming_details.xml" value="0.20036264732547598" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_question.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_quiz_category.xml" value="0.20521590423257802" />
-        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_registration_page.xml" value="0.25" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_registration_page.xml" value="0.264" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_score.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_sets.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_splash_screen.xml" value="0.25" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_tutorial_video_list.xml" value="0.20521590423257802" />
-        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_verify_phone.xml" value="0.20052083333333334" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_verify_phone.xml" value="0.264" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_video_player.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/attendance_item_layout.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/cat_item_layout.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/custom_dialog.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/findjobs_card_layout.xml" value="0.264" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/fragment_favorite.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/fragment_findjobs.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/fragment_home.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/fragment_my_jobs_.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/fragment_myjobs.xml" value="0.2" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/fragment_previous_jobs.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/fragment_search.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/fragment_tutorials.xml" value="0.20521590423257802" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/fragment_upcoming_jobs.xml" value="0.1936725096194955" />
-        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/menu/bottom_nav.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/loading_progressbar.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/set_item_layout.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/layout/singlerow.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/menu/bottom_nav.xml" value="0.1" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/menu/bottom_nav_menu.xml" value="0.20521590423257802" />
-        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/menu/skills_menu.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/menu/filter_video.xml" value="0.20521590423257802" />
+        <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/menu/skills_menu.xml" value="0.1" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/SIH2022/app/BetaVerse_SIH2022_APP/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
         <entry key="..\:/projects/SIH Hackathon/BetaVerse_SIH2022_APP/app/src/main/res/layout/activity_login_page.xml" value="0.176" />

@@ -1,5 +1,6 @@
 package com.example.kaaryakhoj;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -37,12 +38,14 @@ import java.util.concurrent.TimeUnit;
 
 public class LoginPage extends AppCompatActivity {
 
-    private TextView register;
-    EditText editTextPhone2,editTextNumber3;
+    private TextView register, chnglang;
+    EditText entered_phone,entered_otp;
     FirebaseFirestore db;
     private FirebaseAuth mAuth;
     String verificationId,Code;
     ConstraintLayout loginotp;
+    Button getOtpbtn, loginbtn ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,24 +54,23 @@ public class LoginPage extends AppCompatActivity {
         getSupportActionBar().hide(); // hide the title bar
         loadLocale();
         setContentView(R.layout.activity_login_page);
-        Button login,verifyotp, chnglang ;
-        login = findViewById(R.id.loginpage_loginGetOTP);
-        editTextPhone2 = findViewById(R.id.loginpage_editTextPhone2);
-        loginotp = findViewById(R.id.loginpage_constraintLayout);
-        verifyotp = findViewById(R.id.loginpage_loginVerifyOTP);
-        editTextNumber3 = findViewById(R.id.loginpage_editTextNumber3);
-        chnglang = findViewById(R.id.loginpage_changelanguage);
+
+        getOtpbtn = findViewById(R.id.loginpage_getOtpbtn);
+        entered_phone = findViewById(R.id.loginpage_phone);
+        loginbtn = findViewById(R.id.loginpage_loginbtn);
+        entered_otp = findViewById(R.id.loginpage_enterotp);
+
         mAuth = FirebaseAuth.getInstance();
 
 
         //Login Button
-        login.setOnClickListener(new View.OnClickListener() {
+        getOtpbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginotp.setVisibility(View.VISIBLE);
-                login.setEnabled(false);
+
+                getOtpbtn.setEnabled(false);
                 db = FirebaseFirestore.getInstance();
-                DocumentReference docRef = db.collection("user").document("+91"+editTextPhone2.getText().toString());
+                DocumentReference docRef = db.collection("user").document("+91"+entered_phone.getText().toString());
                 docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -78,7 +80,7 @@ public class LoginPage extends AppCompatActivity {
                             if (document.exists()) {
 //                                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
 //                                            startActivity(new Intent(LoginPage.this, Logout.class));
-                                sendVerificationCode(editTextPhone2.getText().toString());
+                                sendVerificationCode(entered_phone.getText().toString());
                             } else {
 //                                        System.out.println("Document Snapshot data "+ document.getData());
                                Toast.makeText(LoginPage.this, "User Does Not Exist",Toast.LENGTH_SHORT).show();
@@ -91,33 +93,33 @@ public class LoginPage extends AppCompatActivity {
         });
 
         //VerifyOTP
-        verifyotp.setOnClickListener(new View.OnClickListener() {
+        loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(TextUtils.isEmpty(editTextNumber3.getText().toString()))
+                if(TextUtils.isEmpty(entered_otp.getText().toString()))
                 {
                     Toast.makeText(LoginPage.this, "Wrong Otp", Toast.LENGTH_SHORT).show();
                 }
                 else
-                    verifyCode(editTextNumber3.getText().toString());
+                    verifyCode(entered_otp.getText().toString());
             }
 
         });
 
         //Redirect to Register
-        register = findViewById(R.id.loginpage_register);
+        register = findViewById(R.id.loginpage_registerhere);
         register.setOnClickListener(new View.OnClickListener() {
-
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginPage.this,TutorialVideoList.class);
+                Intent intent = new Intent(LoginPage.this,FirstPage.class);
                 startActivity(intent);
             }
         });
 
 
         // language translator
+        chnglang = findViewById(R.id.loginpage_changelanguage);
         chnglang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -252,15 +254,16 @@ private void sendVerificationCode(String phoneNumber) {
       PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
         System.out.println("Verify phone : "+verificationId);
         System.out.println("Code : "+Code);
-        System.out.println("OTP entered : "+editTextNumber3.getText().toString());
+        System.out.println("OTP entered : "+entered_otp.getText().toString());
 
-        if (!(Code.equals(editTextNumber3.getText().toString()))){
+        if (!(Code.equals(entered_otp.getText().toString()))){
             Toast.makeText(LoginPage.this,"OTP Invalid",Toast.LENGTH_SHORT).show();
         }
 
 
         signinbyCredentials(credential);
     }
+
     private void signinbyCredentials(PhoneAuthCredential credential) {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signInWithCredential(credential)

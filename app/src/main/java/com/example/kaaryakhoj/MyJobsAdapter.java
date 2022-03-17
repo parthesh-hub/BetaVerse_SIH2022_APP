@@ -44,9 +44,14 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.Viewholder
     public void onBindViewHolder(@NonNull MyJobsAdapter.Viewholder holder, int position) {
         // to set data to textview and imageview of each card layout
         jobDetails model = jobsArrayList.get(position);
+
         holder.jobName.setText(model.getJob_name());
         holder.jobLocation.setText(model.getJob_location());
         holder.jobImage.setImageResource(model.getJob_image());
+        holder.companyName.setText(model.getCompanyname());
+        holder.startDate.setText(model.getStartdate());
+        holder.endDate.setText(model.getEnddate());
+        holder.dailyWage.setText(model.getWage());
 
 
 
@@ -56,6 +61,7 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.Viewholder
 
                 Intent intent = new Intent(context,MyJobsDetailsActivity.class);
                 intent.putExtra("JobId",model.getJob_id());
+                intent.putExtra("CompanyName",model.getCompanyname());
                 context.startActivity(intent);
                 //Toast.makeText(context,model.getJob_id(),Toast.LENGTH_SHORT).show();
             }
@@ -73,7 +79,7 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.Viewholder
     // your views such as TextView and Imageview.
     public class Viewholder extends RecyclerView.ViewHolder {
         private ImageView jobImage;
-        private TextView jobName, jobLocation;
+        private TextView jobName, jobLocation, companyName, startDate, endDate, dailyWage;
         private String jobId;
 
         public Viewholder(@NonNull View itemView) {
@@ -81,6 +87,10 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.Viewholder
             jobName = itemView.findViewById(R.id.jobName);
             jobLocation = itemView.findViewById(R.id.jobLocation);
             jobImage = itemView.findViewById(R.id.jobImage);
+            companyName = itemView.findViewById(R.id.companyName);
+            startDate = itemView.findViewById(R.id.startDate);
+            endDate = itemView.findViewById(R.id.endDate);
+            dailyWage = itemView.findViewById(R.id.dailyWage);
 
         }
     }

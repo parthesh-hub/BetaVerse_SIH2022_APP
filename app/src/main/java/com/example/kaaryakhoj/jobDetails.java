@@ -10,14 +10,116 @@ public class jobDetails {
     private int job_image;
     private String wage;
     private String job_id;
+    // newly added
+    private String company_id, companyname ;
+    private String startdate, enddate, startime, endtime, required_workers, shortage, contact ;
 
-    public jobDetails(String job_name, String job_desc, String job_location, int job_image, String wage, String job_id) {
+    public jobDetails(String job_name, String job_desc, String job_location, int job_image, String wage, String job_id,
+                      String company_id, String companyname, String startdate, String enddate, String startime,
+                      String endtime, String required_workers, String shortage, String contact)
+    {
         this.job_name = job_name;
         this.job_desc = job_desc;
         this.job_location = job_location;
         this.job_image = job_image;
         this.wage = wage;
         this.job_id = job_id;
+        this.company_id = company_id;
+        this.companyname = companyname;
+        this.startdate = startdate;
+        this.enddate = enddate;
+        this.startime = startime;
+        this.endtime = endtime;
+        this.required_workers = required_workers;
+        this.shortage = shortage;
+        this.contact = contact;
+    }
+
+
+//    public jobDetails(String job_name, String job_desc, String job_location, int job_image, String wage, String job_id) {
+//        this.job_name = job_name;
+//        this.job_desc = job_desc;
+//        this.job_location = job_location;
+//        this.job_image = job_image;
+//        this.wage = wage;
+//        this.job_id = job_id;
+//    }
+
+
+    public void setJob_id(String job_id) {
+        this.job_id = job_id;
+    }
+
+    public String getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(String company_id) {
+        this.company_id = company_id;
+    }
+
+    public String getCompanyname() {
+        return companyname;
+    }
+
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
+    }
+
+    public String getStartdate() {
+        return startdate;
+    }
+
+    public void setStartdate(String startdate) {
+        this.startdate = startdate;
+    }
+
+    public String getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(String enddate) {
+        this.enddate = enddate;
+    }
+
+    public String getStartime() {
+        return startime;
+    }
+
+    public void setStartime(String startime) {
+        this.startime = startime;
+    }
+
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+
+    public String getRequired_workers() {
+        return required_workers;
+    }
+
+    public void setRequired_workers(String required_workers) {
+        this.required_workers = required_workers;
+    }
+
+    public String getShortage() {
+        return shortage;
+    }
+
+    public void setShortage(String shortage) {
+        this.shortage = shortage;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
     }
 
     public String getJob_name(){
@@ -63,8 +165,9 @@ public class jobDetails {
     }
     public void setJob_image(int job_image){
         this.job_image = job_image;
-
     }
+
+
 
     @Override
     public String toString() {

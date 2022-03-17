@@ -1,6 +1,9 @@
 package com.example.kaaryakhoj;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,13 +20,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Map;
 
 public class UpcomingJobsFragment extends Fragment {
@@ -36,14 +46,17 @@ public class UpcomingJobsFragment extends Fragment {
     private  MyJobsAdapter adapter;
     // Arraylist for storing data
     private ArrayList<jobDetails> jobArrayList;
+    String companyName;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        loadLocale();
         thiscontext = container.getContext();
         setHasOptionsMenu(true);
+
         loadingDialog = new LoadingDialog(getActivity());
         layoutView = inflater.inflate(R.layout.fragment_upcoming_jobs, container, false);
         jobRV = (RecyclerView)layoutView.findViewById(R.id.upcomingJobs);
@@ -68,24 +81,31 @@ public class UpcomingJobsFragment extends Fragment {
                                 System.out.println(document.getData());
                                 Map<String, Object> job=  document.getData();
                                 System.out.println("Json Object "+job);
-                                String jobName = (String) job.get("jobName");
-                                String jobLocation = (String) job.get("jobLocation");
+                                String jobName = (String) job.get("jobType");
+                                String jobDesc = (String) job.get("description");
+                                String jobLocation = (String) job.get("location");
+                                String jobWage = (String) job.get("wage");
                                 String jobId = (String) document.getId();
-                                System.out.println(("JOB NAME "+ jobName));
-                                jobArrayList.add(new jobDetails(jobName,"", jobLocation, R.drawable.jobimage,"",jobId));
-                                System.out.println(("JOb Array"+ jobArrayList));
+                                String companyId = (String) job.get("companyId");
+
+//                                String companyName = companyId.companyName ;
+                                String startdate = (String) job.get("startDate");
+                                String enddate = (String) job.get("endDate");
+                                String startime = (String) job.get("startTime");
+                                String endtime = (String) job.get("endTime");
+                                String required_workers = (String) job.get("required_workers");
+                                String shortage = (String) job.get("vacancy");
+                                String contact = (String) job.get("contact");
+
+                                jobArrayList.add(new jobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage,jobWage,jobId,
+                                        companyId,"JPMC",startdate, enddate, startime, endtime, required_workers,
+                                        shortage, contact));
+
+                                System.out.println(("Job Array"+ jobArrayList));
                             }
                         } else {
                             System.out.println("Error getting documents: "+task.getException());
                         }
-//                        Handler handler = new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                setJobArray(jobArrayList);
-//
-//                            }
-//                        }, 2000);
                         setJobArray(jobArrayList);
                         loadingDialog.dismissDialog();
                     }
@@ -148,6 +168,27 @@ public class UpcomingJobsFragment extends Fragment {
             setJobArray(filteredlist);
             System.out.println("Hello");
         }
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getActivity().getResources().updateConfiguration(config, getActivity().getResources().getDisplayMetrics());
+
+        //save data to shared prefernces
+        SharedPreferences.Editor editor = this.getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+
+    //load language stored in Shared Preferences
+    public void loadLocale(){
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang","");
+        setLocale(language);
     }
 
 }

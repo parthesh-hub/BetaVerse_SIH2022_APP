@@ -1,9 +1,13 @@
 package com.example.kaaryakhoj;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -20,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static com.example.kaaryakhoj.TutorialsFragment.catList;
 import static com.example.kaaryakhoj.TutorialsFragment.selected_cat_index;
@@ -35,6 +40,7 @@ public class SetsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        loadLocale();
         setContentView(R.layout.activity_sets);
 
         sets_grid = findViewById(R.id.sets_gridview);
@@ -98,6 +104,28 @@ public class SetsActivity extends AppCompatActivity {
             SetsActivity.this.finish();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        //save data to shared prefernces
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+
+    //load language stored in Shared Preferences
+    public void loadLocale(){
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang","");
+        setLocale(language);
     }
 }
 

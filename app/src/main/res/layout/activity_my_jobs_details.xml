@@ -5,9 +5,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".MyJobsDetailsActivity"
@@ -31,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Job Type"
+                android:text="@string/myjobs_details_job_type"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -70,7 +68,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
                 android:layout_toEndOf="@+id/myjobs_details_jobDescLayout"
-                android:text="Job Description"
+                android:text="@string/myjobs_details_job_description"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="25sp"
@@ -107,7 +105,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Company Name"
+                android:text="@string/myjobs_details_company_name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -154,7 +152,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_toEndOf="@+id/myjobs_details_dailyWageLayout"
-                    android:text="Daily Wage"
+                    android:text="@string/myjobs_details_daily_wage"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="25sp"
@@ -192,12 +190,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:text="Location"
+                    android:layout_toEndOf="@+id/myjobs_details_locationLayout"
+                    android:text="@string/myjobs_details_location"
+                    android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="25sp"
                     android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:layout_toEndOf="@+id/myjobs_details_locationLayout"
                     app:layout_constraintHorizontal_bias="0.5"
                     tools:ignore="NotSibling" />
 
@@ -242,7 +240,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_toEndOf="@+id/myjobs_details_startdateLayout"
-                    android:text="Start Date"
+                    android:text="@string/myjobs_details_start_date"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="25sp"
@@ -280,12 +278,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:text="End Date"
+                    android:layout_toEndOf="@+id/myjobs_details_enddateLayout"
+                    android:text="@string/myjobs_details_end_date"
+                    android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="25sp"
                     android:textStyle="bold"
-                    android:textAlignment="center"
-                    android:layout_toEndOf="@+id/myjobs_details_enddateLayout"
                     app:layout_constraintHorizontal_bias="0.5"
                     tools:ignore="NotSibling" />
 
@@ -293,10 +291,10 @@
                     android:id="@+id/myjobs_details_endDate"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/myjobs_details_strendDate"
                     android:layout_marginBottom="10dp"
                     android:text="TANVI"
                     android:textAlignment="center"
-                    android:layout_below="@+id/myjobs_details_strendDate"
                     android:textSize="25sp" />
 
             </RelativeLayout>
@@ -330,7 +328,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_toEndOf="@+id/myjobs_details_starttimeLayout"
-                    android:text="Start Time"
+                    android:text="@string/myjobs_details_start_time"
                     android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="25sp"
@@ -368,7 +366,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="5dp"
-                    android:text="End Date"
+                    android:text="@string/myjobs_details_end_time"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"
                     android:textSize="25sp"
                     android:textStyle="bold"
@@ -394,44 +392,6 @@
 
 
         <LinearLayout
-            android:id="@+id/myjobs_details_availabilityLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:orientation="vertical"
-            >
-
-            <TextView
-                android:id="@+id/myjobs_details_strAvailabiltiy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:text="Availibility"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:layout_toEndOf="@+id/myjobs_details_availabilityLayout"
-                app:layout_constraintHorizontal_bias="0.5"
-                tools:ignore="NotSibling" />
-
-            <TextView
-                android:id="@+id/myjobs_details_availabiltiy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="TANVI"
-                android:textAlignment="center"
-                android:layout_below="@+id/myjobs_details_strAvailabiltiy"
-                android:textSize="25sp" />
-
-        </LinearLayout>
-
-
-        <LinearLayout
             android:id="@+id/myjobs_details_jobRequirementsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -447,7 +407,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Job Requirements"
+                android:text="@string/myjobs_details_job_requirements"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -485,7 +445,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Address"
+                android:text="@string/myjobs_details_address"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -523,7 +483,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Contact"
+                android:text="@string/myjobs_details_contact"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -561,7 +521,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Rating"
+                android:text="@string/myjobs_details_rating"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -571,16 +531,16 @@
                 tools:ignore="NotSibling" />
 
             <RatingBar
+                android:id="@+id/myjobs_details_Rating"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/myjobs_details_Rating"
+                android:layout_gravity="center"
+                android:numStars="5"
+                android:progressTint="@color/purple_500"
                 android:rating="3"
                 android:stepSize="1"
                 android:theme="@style/RatingBar"
-                android:numStars="5"
-                android:layout_gravity="center"
-                android:progressTint="@color/purple_500"
-                 />
+                tools:ignore="SpeakableTextPresentCheck" />
 
         </LinearLayout>
 
@@ -601,7 +561,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Payment Mode"
+                android:text="@string/myjobs_details_payment_mode"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -639,7 +599,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Status"
+                android:text="@string/myjobs_details_status"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -677,7 +637,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
-                android:text="Attendance"
+                android:text="@string/myjobs_details_attendance"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -697,24 +657,24 @@
                     >
 
                     <TextView
-                        android:text="Date"
+                        android:text="@string/myjobs_details_date"
                         android:layout_column="1"
                         android:textSize="16dp"
                         android:gravity="center"/>
                     <TextView
-                        android:text="Check-In Time"
-                        android:layout_column="1"
-                        android:textSize="16dp"
-                        android:gravity="center"/>
-
-                    <TextView
-                        android:text="Check-Out Time"
+                        android:text="@string/myjobs_details_check_in_time"
                         android:layout_column="1"
                         android:textSize="16dp"
                         android:gravity="center"/>
 
                     <TextView
-                        android:text="On-Time"
+                        android:text="@string/myjobs_details_check_out_time"
+                        android:layout_column="1"
+                        android:textSize="16dp"
+                        android:gravity="center"/>
+
+                    <TextView
+                        android:text="@string/myjobs_details_on_time"
                         android:layout_column="1"
                         android:textSize="16dp"
                         android:gravity="center"/>
@@ -740,7 +700,7 @@
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="20dp"
-            android:text="Generate QR" />
+            android:text="@string/myjobs_details_generate_qr" />
 
 
     </LinearLayout>

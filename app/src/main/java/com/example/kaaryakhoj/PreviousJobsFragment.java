@@ -1,6 +1,9 @@
 package com.example.kaaryakhoj;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +26,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -33,7 +37,7 @@ public class PreviousJobsFragment extends Fragment {
     LoadingDialog loadingDialog;
     private RecyclerView jobRV;
     FirebaseFirestore db;
-    private  JobAdapter adapter;
+    private  MyJobsAdapter adapter;
     // Arraylist for storing data
     private ArrayList<jobDetails> jobArrayList;
 
@@ -44,6 +48,7 @@ public class PreviousJobsFragment extends Fragment {
         // Inflate the layout for this fragment
         thiscontext = container.getContext();
         setHasOptionsMenu(true);
+        loadLocale();
         loadingDialog = new LoadingDialog(getActivity());
         layoutView = inflater.inflate(R.layout.fragment_previous_jobs, container, false);
         jobRV = (RecyclerView)layoutView.findViewById(R.id.previousJobs);
@@ -68,11 +73,25 @@ public class PreviousJobsFragment extends Fragment {
                                 System.out.println(document.getData());
                                 Map<String, Object> job=  document.getData();
                                 System.out.println("Json Object "+job);
-                                String jobName = (String) job.get("jobName");
-                                String jobLocation = (String) job.get("jobLocation");
+                                String jobName = (String) job.get("jobType");
+                                String jobDesc = (String) job.get("description");
+                                String jobLocation = (String) job.get("location");
+                                String jobWage = (String) job.get("wage");
                                 String jobId = (String) document.getId();
-                                System.out.println(("JOB NAME "+ jobName));
-                                jobArrayList.add(new jobDetails(jobName,"", jobLocation, R.drawable.jobimage,"",jobId));
+                                String companyId = (String) job.get("companyId");
+//                                String companyName = companyId.companyName ;
+                                String startdate = (String) job.get("startDate");
+                                String enddate = (String) job.get("endDate");
+                                String startime = (String) job.get("startTime");
+                                String endtime = (String) job.get("endTime");
+                                String required_workers = (String) job.get("required_workers");
+                                String shortage = (String) job.get("vacancy");
+                                String contact = (String) job.get("contact");
+
+                                jobArrayList.add(new jobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage,jobWage,jobId,
+                                        companyId,"JPMC",startdate, enddate, startime, endtime, required_workers,
+                                        shortage, contact));
+
                                 System.out.println(("JOb Array"+ jobArrayList));
                             }
                         } else {
@@ -94,7 +113,7 @@ public class PreviousJobsFragment extends Fragment {
 
 
     private void setJobArray(ArrayList<jobDetails> jobList) {
-        JobAdapter courseAdapter = new JobAdapter(getActivity(), jobList);
+        MyJobsAdapter courseAdapter = new MyJobsAdapter(getActivity(), jobList);
 
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical
@@ -148,6 +167,27 @@ public class PreviousJobsFragment extends Fragment {
             setJobArray(filteredlist);
             System.out.println("Hello");
         }
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getActivity().getResources().updateConfiguration(config, getActivity().getResources().getDisplayMetrics());
+
+        //save data to shared prefernces
+        SharedPreferences.Editor editor = this.getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+
+    //load language stored in Shared Preferences
+    public void loadLocale(){
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang","");
+        setLocale(language);
     }
 
 

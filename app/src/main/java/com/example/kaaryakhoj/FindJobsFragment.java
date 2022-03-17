@@ -1,6 +1,9 @@
 package com.example.kaaryakhoj;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,13 +19,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Map;
 
 
@@ -37,7 +45,7 @@ public class FindJobsFragment extends Fragment {
     private  JobAdapter adapter;
     // Arraylist for storing data
     private ArrayList<jobDetails> jobArrayList;
-
+    String companyName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +53,7 @@ public class FindJobsFragment extends Fragment {
         // Inflate the layout for this fragment
         thiscontext = container.getContext();
         loadingDialog = new LoadingDialog(getActivity());
-
+        loadLocale();
         setHasOptionsMenu(true);
         layoutView = inflater.inflate(R.layout.activity_find_jobs, container, false);
         jobRV = (RecyclerView)layoutView.findViewById(R.id.findJobs);
@@ -72,24 +80,35 @@ public class FindJobsFragment extends Fragment {
                                 System.out.println(document.getData());
                                 Map<String, Object> job=  document.getData();
                                 System.out.println("Json Object "+job);
-                                String jobName = (String) job.get("jobName");
-                                String jobLocation = (String) job.get("jobLocation");
+                                String jobName = (String) job.get("jobType");
+                                String jobDesc = (String) job.get("description");
+                                String jobLocation = (String) job.get("location");
+                                String jobWage = (String) job.get("wage");
                                 String jobId = (String) document.getId();
-                                System.out.println(("JOB NAME "+ jobName));
-                                jobArrayList.add(new jobDetails(jobName,"", jobLocation, R.drawable.jobimage,"",jobId));
+                                String companyId = (String) job.get("companyId");
+
+                                getCompanyDetails(companyId);
+
+                                String startdate = (String) job.get("startDate");
+                                String enddate = (String) job.get("endDate");
+                                String startime = (String) job.get("startTime");
+                                String endtime = (String) job.get("endTime");
+                                String required_workers = (String) job.get("required_workers");
+                                String shortage = (String) job.get("vacancy");
+                                String contact = (String) job.get("contact");
+
+                                System.out.println("CFB: "+companyName);
+                                jobArrayList.add(new jobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage,jobWage,jobId,
+                                        companyId,companyName,startdate, enddate, startime, endtime, required_workers,
+                                        shortage, contact));
+
+
                                 System.out.println(("JOb Array"+ jobArrayList));
                             }
                         } else {
                             System.out.println("Error getting documents: "+task.getException());
                         }
-//                        Handler handler = new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                setJobArray(jobArrayList);
-//
-//                            }
-//                        }, 2000);
+
                         setJobArray(jobArrayList);
                         loadingDialog.dismissDialog();
                     }
@@ -148,6 +167,66 @@ public class FindJobsFragment extends Fragment {
             setJobArray(filteredlist);
             System.out.println("Hello");
         }
+    }
+
+
+    private void getCompanyDetails(String companyId) {
+
+
+        DocumentReference docRef1 = db.collection("employer_details").document(companyId);
+        docRef1.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        //Log.d(TAG, "DocumentSnapshot data: " + document.getData());
+                        Map<String, Object> job = document.getData();
+                        companyName = (String) job.get("companyName");
+                        System.out.println("CN: "+companyName);
+                    }
+                }
+                else{
+                    companyName = "false";
+                    System.out.println("TASK FAILED");
+                }
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("Listener Failed");
+                    }
+                })
+                .addOnCanceledListener(new OnCanceledListener() {
+                    @Override
+                    public void onCanceled() {
+                        System.out.println("Task Cancelled");
+                    }
+                });
+
+    }
+
+    private void setLocale(String lang) {
+        Locale locale = new Locale(lang);
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+        config.locale = locale;
+        getActivity().getResources().updateConfiguration(config, getActivity().getResources().getDisplayMetrics());
+
+        //save data to shared prefernces
+        SharedPreferences.Editor editor = this.getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE).edit();
+        editor.putString("My_Lang", lang);
+        editor.apply();
+    }
+
+    //load language stored in Shared Preferences
+    public void loadLocale(){
+        SharedPreferences prefs = this.getActivity().getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String language = prefs.getString("My_Lang","");
+        setLocale(language);
     }
 
 

@@ -36,8 +36,8 @@ import java.util.Objects;
 
 public class RegistrationPage extends AppCompatActivity {
     FirebaseAuth mAuth;
-    private EditText Name,Address,aadharNumber;
-    private Button button2;
+    private EditText FirstName, LastName, Pincode, Address,aadharNumber;
+    private Button registerbtn;
     private FirebaseFirestore db;
     private PhoneAuthCredential credential;
     private String userID, Code, verificationId,Phone;
@@ -48,25 +48,27 @@ public class RegistrationPage extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         getSupportActionBar().hide(); // hide the title bar
         loadLocale();
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registration_page);
 
         db = FirebaseFirestore.getInstance();
-        Name = findViewById(R.id.Name);
-        Address = findViewById(R.id.Address);
-        aadharNumber = findViewById(R.id.aadharNumber);
-        button2 = findViewById(R.id.button2);
+        FirstName = findViewById(R.id.registrationpage_firstname);
+        LastName = findViewById(R.id.registrationpage_lastname);
+        Pincode = findViewById(R.id.registrationpage_pincode);
+        Address = findViewById(R.id.registrationpage_PostalAddress);
+        aadharNumber = findViewById(R.id.registrationpage_aadhar);
+        registerbtn = findViewById(R.id.registrationpage_registerbtn);
 
 //        credential = getIntent().getParcelableExtra("credential");
-        verificationId = getIntent().getStringExtra("verificationId");
-        Code = getIntent().getStringExtra("Code");
-        System.out.println("Registration Page Hello"+verificationId + Code);
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
-        System.out.println("Credential: "+credential);
-        System.out.println("Inside click");
+//        verificationId = getIntent().getStringExtra("verificationId");
+//        Code = getIntent().getStringExtra("Code");
+//        System.out.println("Registration Page Hello"+verificationId + Code);
+//        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
+//        System.out.println("Credential: "+credential);
+//        System.out.println("Inside click");
+//
+//        System.out.println("After signin");
 
-        System.out.println("After signin");
-
-        button2.setOnClickListener(new View.OnClickListener() {
+        registerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -81,17 +83,20 @@ public class RegistrationPage extends AppCompatActivity {
                     @Override
                     public void run() {
 //                        userID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-                        Phone = Objects.requireNonNull(mAuth.getCurrentUser()).getPhoneNumber();
+//                        Phone = Objects.requireNonNull(mAuth.getCurrentUser()).getPhoneNumber();
                         System.out.println("After userID");
                         System.out.println("Registration Page UserID"+userID);
-                        String name = Name.getText().toString();
-                        System.out.println("Registration Page Name"+name);
+                        String firstname = FirstName.getText().toString();
+                        String lastname = LastName.getText().toString();
+                        String pincode = Pincode.getText().toString();
                         String address = Address.getText().toString();
                         String aadhar = aadharNumber.getText().toString();
                         Map<String,Object> user =new HashMap<>();
-                        user.put("Name", name);
+                        user.put("FirstName", firstname);
+                        user.put("LastName", lastname);
                         user.put("Address", address);
-                        user.put("Aadhar Number", aadhar);
+                        user.put("Pincode",pincode);
+                        user.put("AadharNumber", aadhar);
 
 
                         db.collection("user").document(Phone)

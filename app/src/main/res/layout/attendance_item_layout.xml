@@ -12,25 +12,26 @@
         <TextView
             android:id="@+id/attendace_date"
             android:layout_column="1"
+            android:text="@string/myjobs_details_date"
             android:textSize="16dp"
             android:gravity="center"/>
         <TextView
             android:id="@+id/attendance_checkintime"
-            android:text="Check-In Time"
+            android:text="@string/myjobs_details_check_in_time"
             android:layout_column="1"
             android:textSize="16dp"
             android:gravity="center"/>
 
         <TextView
             android:id="@+id/attendance_checkouttime"
-            android:text="Check-Out Time"
+            android:text="@string/myjobs_details_check_out_time"
             android:layout_column="1"
             android:textSize="16dp"
             android:gravity="center"/>
 
         <TextView
             android:id="@+id/attendance_on_time"
-            android:text="On-Time"
+            android:text="@string/myjobs_details_on_time"
             android:layout_column="1"
             android:textSize="16dp"
             android:gravity="center"/>

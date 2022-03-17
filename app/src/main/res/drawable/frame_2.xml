@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- drawable/frame_2.xml -->
+    <vector
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:aapt="http://schemas.android.com/aapt"
+        android:width="337dp"
+        android:height="315dp"
+        android:viewportWidth="337"
+        android:viewportHeight="315"
+        >
+        <group>
+            <clip-path
+                android:pathData="M0 0H337V315H0V0Z"
+                />
+        </group>
+    </vector>
+
+</selector>

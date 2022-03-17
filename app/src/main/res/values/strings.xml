@@ -3,8 +3,8 @@
     <string name="strjobname" translatable="false">Hello</string>
     <string name="job_location" translatable="false">getJob_location()</string>
     <string name="app_name" translatable="false">Kaaryakhoj</string>
-    <string name="loginpage_phone_number">Phone Number</string>
-    <string name="loginpage_login">Login</string>
+    <string name="loginpage_phone_number">Enter Phone Number</string>
+    <string name="loginpage_login" style="text-decoration: underline;">Login</string>
     <string name="loginpage_get_otp">Get OTP</string>
     <string name="loginpage_not_registered">Not Registered?</string>
     <string name="loginpage_register_here">Register Here</string>
@@ -18,8 +18,8 @@
     <string name="registrationpage_sign_up">Sign Up</string>
     <string name="verifyphonepage_register">Register</string>
     <string name="verifyphonepage_enter_phone_number">Enter Phone Number</string>
-    <string name="verifyphonepage_send_otp">Send OTP</string>
-    <string name="verifyphonepage_verify">VERIFY</string>
+    <string name="verifyphonepage_send_otp">Get OTP</string>
+    <string name="verifyphonepage_verify">Verify</string>
     <string name="verifyphonepage_enter_otp">Enter OTP</string>
     <string name="title_activity_my_jobs" translatable="false">MyJobs</string>
     <string name="title_home" translatable="false">Home</string>
@@ -28,14 +28,44 @@
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="qr_code" translatable="false">qr_code</string>
     <string name="generate_qr_code" translatable="false">generate_qr_coe</string>
-    <string name="qr_code_download" translatable="false">Download QR Code</string>
-    <string name="strjob_companyName" translatable="false">Company :</string>
+    <string name="qr_code_download">Download QR Code</string>
+    <string name="card_strjob_companyName">Company :</string>
     <string name="job_companyName" translatable="false">getCompany_name()</string>
-    <string name="strjob_startdate" translatable="false">Start Date :</string>
+    <string name="card_strjob_startdate">Start Date :</string>
     <string name="job_startdate" translatable="false">getStart_date()</string>
-    <string name="strjob_enddate" translatable="false">End Date :</string>
+    <string name="card_strjob_enddate">End Date :</string>
     <string name="job_enddate" translatable="false">getEnd_date()</string>
-    <string name="strjob_dailywage" translatable="false">Daily Wage :</string>
+    <string name="card_strjob_dailywage">Daily Wage :</string>
     <string name="job_dailywage" translatable="false">getWage()</string>
+    <string name="myjobs_details_job_type">Job Type</string>
+    <string name="myjobs_details_job_description">Job Description</string>
+    <string name="myjobs_details_company_name">Company Name</string>
+    <string name="myjobs_details_daily_wage">Daily Wage</string>
+    <string name="myjobs_details_location">Location</string>
+    <string name="myjobs_details_start_date">Start Date</string>
+    <string name="myjobs_details_end_date">End Date</string>
+    <string name="myjobs_details_start_time">Start Time</string>
+    <string name="myjobs_details_end_time">End Time</string>
+    <string name="myjobs_details_job_requirements">Job Requirements</string>
+    <string name="myjobs_details_address">Address</string>
+    <string name="myjobs_details_contact">Contact</string>
+    <string name="myjobs_details_rating">Rating</string>
+    <string name="myjobs_details_payment_mode">Payment Mode</string>
+    <string name="myjobs_details_status">Status</string>
+    <string name="myjobs_details_attendance">Attendance</string>
+    <string name="myjobs_details_date">Date</string>
+    <string name="myjobs_details_check_in_time">Check-In Time</string>
+    <string name="myjobs_details_check_out_time">Check-Out Time</string>
+    <string name="myjobs_details_on_time">On-Time</string>
+    <string name="myjobs_details_generate_qr">Generate QR</string>
+    <string name="job_apply_btn">Apply For Job</string>
+    <string name="myjobs_details_availability">Availability</string>
+    <string name="quiz_score_done_btn">Done</string>
+    <string name="quiz_score">SCORE</string>
+    <string name="fragment_title_upcoming_jobs">Upcoming Jobs</string>
+    <string name="fragment_title_previous_jobs">Previous Jobs</string>
+    <string name="bottomnav_my_jobs">My Jobs</string>
+    <string name="bottomnav_find_jobs">Find Jobs</string>
+    <string name="bottomnav_skill_development">Skill Development</string>
 
 </resources>
