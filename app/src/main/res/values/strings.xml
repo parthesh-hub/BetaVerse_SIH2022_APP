@@ -69,6 +69,12 @@
     <string name="bottomnav_skill_development">Skill Development</string>
     <string name="myjobs_cancel_job" translatable="false">Cancel Job</string>
     <string name="previous_jobs_attendance" translatable="false">Attendance Record</string>
-    <string name="bottomnav_my_profile" translatable="false">My Profile</string>
+    <string name="bottomnav_my_profile">My Profile</string>
+    <string name="profile_page_address">Address</string>
+    <string name="profilepage_pincode">PinCode</string>
+    <string name="profilepage_phone_number">Phone Number</string>
+    <string name="profilepage_upi_id" translatable="false">UPI ID</string>
+    <string name="profilepage_work_rating">Work Rating</string>
+    <string name="profilepage_experience">Experience</string>
 
 </resources>

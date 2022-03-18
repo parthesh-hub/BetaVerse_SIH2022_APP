@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -32,13 +34,15 @@ import java.util.Map;
 public class DetailsActivity extends AppCompatActivity {
 
     LoadingDialog loadingDialog;
-    String jobId1,startdate,enddate,userId;
+    String jobId1,startdate,enddate,userId,shortage;
     Date startdate1,date1,enddate1,date2;
     List<String> dateArray
             = new ArrayList<String>();
     Object[] arr = new String[100];
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     FirebaseFirestore db1 = FirebaseFirestore.getInstance();
+
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +79,7 @@ public class DetailsActivity extends AppCompatActivity {
                         String startime = (String) job.get("startTime");
                         String endtime = (String) job.get("endTime");
                         String required_workers = (String) job.get("required_workers");
-                        String shortage = (String) job.get("vacancy");
+                        shortage = (String) job.get("vacancy");
                         String contact = (String) job.get("contact");
                         jobId1 = jobId;
                         //getCompanyDetails(companyId);
@@ -113,42 +117,40 @@ public class DetailsActivity extends AppCompatActivity {
 //            intent.putExtra("UpiId","sanket@upi");
 //            intent.putExtra("ImageId",jobId);
 //            startActivity(intent);
-                db = FirebaseFirestore.getInstance();
-                System.out.println("Inside btn");
-                userId = "+919158346466";
-                DocumentReference docRef = db.collection("user").document(userId);
-                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DocumentSnapshot document = task.getResult();
-                            if (document.exists()) {
+
+                    db = FirebaseFirestore.getInstance();
+                    System.out.println("Inside btn");
+                    userId = currentUser.getPhoneNumber();
+                    DocumentReference docRef = db.collection("user").document(userId);
+                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot document = task.getResult();
+                                if (document.exists()) {
 //                        Log.d(TAG, "DocumentSnapshot data: " + document.getData());
-                                Map<String, Object> job=  document.getData();
-                                List<String > date = new  ArrayList<String>();
-                                date  = (List<String>) job.get("enddate");
-                                System.out.println("DATE: "+date);
-                                //System.out.println("Date"+date[0]);
-                                if(date!=null)
-                                {
-                                    if(date.isEmpty()){
-                                        date = null;
+                                    Map<String, Object> job = document.getData();
+                                    List<String> date = new ArrayList<String>();
+                                    date = (List<String>) job.get("enddate");
+                                    System.out.println("DATE: " + date);
+                                    //System.out.println("Date"+date[0]);
+                                    if (date != null) {
+                                        if (date.isEmpty()) {
+                                            date = null;
+                                        }
                                     }
-                                }
-                                if(date==null)
-                                {
-                                    System.out.println(enddate);
-                                    dateArray.add(enddate);
+                                    if (date == null) {
+                                        System.out.println(enddate);
+                                        dateArray.add(enddate);
 //                                arr =  dateArray.toArray();
-                                    setJobRecord( dateArray);
+                                        setJobRecord(dateArray);
 
-                                }
-                                else {
-                                    try {
-                                        date1 = new SimpleDateFormat("yyyy-MM-dd").parse((String) date.get((date.size()) - 1));
+                                    } else {
+                                        try {
+                                            date1 = new SimpleDateFormat("yyyy-MM-dd").parse((String) date.get((date.size()) - 1));
 
 
-                                        if (startdate1.before(date1) || startdate1.equals(date1)) {
+                                            if (startdate1.before(date1) || startdate1.equals(date1)) {
 //                                            if(startdate1.equals(date1) || date.size()==1 )
 //                                            {
 //                                                System.out.println("Failed");
@@ -161,35 +163,36 @@ public class DetailsActivity extends AppCompatActivity {
 //
 //                                                    setJobRecord(date);
 //                                                }
-                                            Toast.makeText(DetailsActivity.this, "Already in a Job", Toast.LENGTH_SHORT).show();
-                                        }
+                                                Toast.makeText(DetailsActivity.this, "Already in a Job", Toast.LENGTH_SHORT).show();
+                                            }
 //                                            if(startdate1.after(date1) || startdate1.equals(date1))
 //                                            Toast.makeText(DetailsActivity.this, "Already in a Job", Toast.LENGTH_SHORT).show();
-                                        else {
-                                            date.add(enddate);
+                                            else {
+                                                date.add(enddate);
 
-                                            setJobRecord(date);
+                                                setJobRecord(date);
+                                            }
+
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
                                         }
 
-                                    } catch (ParseException e) {
-                                        e.printStackTrace();
                                     }
-
+                                } else {
+//                        Log.d(TAG, "No such document");
                                 }
                             } else {
-//                        Log.d(TAG, "No such document");
-                            }
-                        } else {
 //                    Log.d(TAG, "get failed with ", task.getException());
+                            }
                         }
-                    }
-                });
+                    });
 
 
-                //FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+                    //FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
 
-            }
+                }
+
 
 
         });
@@ -198,7 +201,8 @@ public class DetailsActivity extends AppCompatActivity {
     }
 
     private void setJobRecord(List<String> dateArray1) {
-
+        int short1 = Integer.parseInt(shortage);
+        short1 = short1-1;
         System.out.println("Inside setJobs");
         Map<String, Object> city = new HashMap<>();
         city.put("JobId", jobId1);
@@ -235,6 +239,22 @@ public class DetailsActivity extends AppCompatActivity {
 //                        Log.w(TAG, "Error adding document", e);
                     }
                 });
+        db.collection("jobs").document(jobId1).update("vacancy",Integer.toString(short1))
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        System.out.println("Success");
+
+//                                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+//                                        Log.w(TAG, "Error updating document", e);
+                    }
+                });
+
     }
 
     public void setDisplay(jobDetails model){

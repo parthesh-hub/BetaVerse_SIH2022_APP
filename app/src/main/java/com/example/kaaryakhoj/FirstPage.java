@@ -1,19 +1,21 @@
 package com.example.kaaryakhoj;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.Locale;
 
@@ -23,6 +25,12 @@ public class FirstPage extends AppCompatActivity {
     MyJobsFragment myJobsFragment = new MyJobsFragment();
     FindJobsFragment findJobsFragment = new FindJobsFragment();
     TutorialsFragment tutorialsFragment = new TutorialsFragment();
+    MyProfileFragment profileFragment = new MyProfileFragment();
+    FirebaseAuth mAuth;
+    FirebaseUser currentUser ;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    String userId;
+    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
 
     @Override
@@ -33,6 +41,9 @@ public class FirstPage extends AppCompatActivity {
 //        getSupportActionBar().show();
         loadLocale();
         setContentView(R.layout.activity_first_page);
+//        setContentView(binding.getRoot());
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
 
 //
 //        ActionBar actionBar;
@@ -42,28 +53,32 @@ public class FirstPage extends AppCompatActivity {
 //        actionBar.setBackgroundDrawable(colorDrawable);
 
         bottomNavigationView = findViewById(R.id.bottom_navigation);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myJobsFragment).commit();
-
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, profileFragment).commit();
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-            switch (item.getItemId()) {
-                case R.id.nav_myjobs:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myJobsFragment).commit();
-                    return true;
-                case R.id.nav_findjobs:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, findJobsFragment).commit();
-                    return true;
-                case R.id.nav_tutorials:
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, tutorialsFragment).commit();
-                    return true;
-            }
-            return true;
+                switch (item.getItemId()) {
+                    case R.id.nav_myjobs:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myJobsFragment).commit();
+                        return true;
+                    case R.id.nav_findjobs:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, findJobsFragment).commit();
+                        return true;
+                    case R.id.nav_tutorials:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, tutorialsFragment).commit();
+                        return true;
+                    case R.id.nav_profilepage:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, profileFragment).commit();
+                        return true;
+                }
+                return true;
             }
         });
+
     }
+
 
 
     private void setLocale(String lang) {

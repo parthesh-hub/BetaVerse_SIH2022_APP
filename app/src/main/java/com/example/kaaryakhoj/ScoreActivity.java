@@ -21,6 +21,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -40,7 +42,7 @@ public class ScoreActivity extends AppCompatActivity {
     JSONObject innerJson = new JSONObject();
     String catName,score_str,setId;
     JSONObject obj1 ;
-
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseFirestore db= FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +134,7 @@ public class ScoreActivity extends AppCompatActivity {
         var.put("Rating",s);
         obj1.put(catName,var);
 
-        db.collection("user").document("+919158346466")
+        db.collection("user").document(currentUser.getPhoneNumber())
                 .update("Skills Rating",obj1.toString())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -168,7 +170,7 @@ public class ScoreActivity extends AppCompatActivity {
         //System.out.println(scoreJson);
         Map<String,Object> user = new HashMap<>();
         user.put("Skills Rating",scoreJson.toString());
-        db.collection("user").document("+919158346466")
+        db.collection("user").document(currentUser.getPhoneNumber())
                 .update("Skills Rating",scoreJson.toString())
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override

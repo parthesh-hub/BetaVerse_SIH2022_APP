@@ -54,4 +54,11 @@
     <string name="bottomnav_my_jobs">எனது வேலைகள்</string>
     <string name="bottomnav_find_jobs">வேலைகளைத் தேடுங்கள்</string>
     <string name="bottomnav_skill_development">திறன் மேம்பாடு</string>
+    <string name="profile_page_address">"தினக்கூலி "</string>
+    <string name="profilepage_experience">அனுபவம்</string>
+    <string name="profilepage_work_rating">வேலை மதிப்பீடு</string>
+    <string name="profilepage_phone_number">தொலைபேசி எண்</string>
+    <string name="profilepage_pincode">அஞ்சல் குறியீடு</string>
+    <string name="bottomnav_my_profile">என் சுயவிவரம்</string>
+
 </resources>

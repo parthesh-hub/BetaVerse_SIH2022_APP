@@ -45,8 +45,12 @@ public class Generate_QR extends AppCompatActivity {
 
 //        String UserName = getIntent().getStringExtra("UserName");
 //        String UpiId = getIntent().getStringExtra("UpiId");
-        String startDate = getIntent().getStringExtra("Startdate");
-        String endDate = getIntent().getStringExtra("Enddate");
+        String startDate = getIntent().getStringExtra("StartDate");
+        String endDate = getIntent().getStringExtra("EndDate");
+        String userId = getIntent().getStringExtra("UserId");
+         jobId = getIntent().getStringExtra("JobId");
+        String accountid = getIntent().getStringExtra("AccountId");
+        String amount = getIntent().getStringExtra("Amount");
         //System.out.println("Username "+UserName);
         downloadQrBtn = findViewById(R.id.idDownloadQR);
         qrCodeIV = findViewById(R.id.idIVQrcode);
@@ -57,12 +61,12 @@ public class Generate_QR extends AppCompatActivity {
         try{
             JSONObject obj = new JSONObject();
 
-            obj.put("UserName","Sanket");
-            obj.put("UpiId","bankofdombivali");
-            obj.put("UserId","+919158346466");
-            obj.put("JobId", "H9RcBladoYj6SnsrXM3Z");
-            obj.put("StartDate", "2022-03-21");
-            obj.put("EndDate", "2022-03-25");
+            obj.put("UserId",userId);
+            obj.put("JobId",jobId);
+            obj.put("AccountId",accountid);
+            obj.put("StartDate", startDate);
+            obj.put("EndDate", endDate);
+            obj.put("Amount", amount);
 //            obj.put("UserName","Sanket");
 //            obj.put("UpiId","Sanket");
 //            obj.put("UserId","Sanket");
@@ -89,11 +93,12 @@ public class Generate_QR extends AppCompatActivity {
         }catch (WriterException | JSONException e){
             e.printStackTrace();
         }
-        
+
+
         downloadQrBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MediaStore.Images.Media.insertImage(getContentResolver(), mMap, jobId , "SAVE QR");
+                MediaStore.Images.Media.insertImage(getContentResolver(), mMap, jobId, "SAVE QR");
             }
         });
     }

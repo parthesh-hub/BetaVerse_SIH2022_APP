@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,17 +16,27 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
@@ -39,8 +51,8 @@ public class PreviousJobsFragment extends Fragment {
     private  PreviousJobsAdapter adapter;
     // Arraylist for storing data
     private ArrayList<previousjobDetails> jobArrayList;
-
-
+    Date enddate1,date1;
+    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -62,52 +74,163 @@ public class PreviousJobsFragment extends Fragment {
         // here we have created new array list and added data to it.
         jobArrayList = new ArrayList<>();
         loadingDialog.startLoadingDialog();
-        db.collection("jobs")
+        db.collection("jobRecords")
+                .whereEqualTo("UserId",currentUser.getPhoneNumber())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot document : task.getResult()) {
-                                System.out.println(document.getData());
-                                Map<String, Object> job=  document.getData();
-                                System.out.println("Json Object "+job);
-                                String jobName = (String) job.get("jobType");
-                                String jobDesc = (String) job.get("description");
-                                String jobLocation = (String) job.get("location");
-                                String jobWage = (String) job.get("wage");
-                                String jobId = (String) document.getId();
-                                String companyId = (String) job.get("companyId");
+                        if(task.isSuccessful())
+                        {
+                            if(task.getResult().isEmpty()){
+                                Toast.makeText(getContext(),"You have no upcoming Jobs",Toast.LENGTH_SHORT).show();
+                            }else {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    Map<String, Object> jobr = document.getData();
+//                                    String job
+                                    String jobid  =(String) jobr.get("JobId");
+                                    System.out.println("JOB" + jobid);
+
+                                    DocumentReference docRef = db.collection("jobs").document(jobid);
+                                    System.out.println("doc: "+docRef);
+                                    docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                        @RequiresApi(api = Build.VERSION_CODES.O)
+                                        @Override
+                                        public void onComplete(@NonNull Task<DocumentSnapshot> task1) {
+                                            System.out.println("Inside doc: "+docRef);
+                                            if (task1.isSuccessful()) {
+                                                DocumentSnapshot document = task1.getResult();
+                                                System.out.println("doc: "+document);
+                                                if (document.exists()) {
+                                                    System.out.println(document.getData());
+                                                    Map<String, Object> job=  document.getData();
+                                                    System.out.println("Json Object "+job);
+                                                    String jobName = (String) job.get("jobType");
+                                                    String jobDesc = (String) job.get("description");
+                                                    String jobLocation = (String) job.get("location");
+                                                    String jobWage = (String) job.get("wage");
+                                                    String jobId = (String) document.getId();
+                                                    String companyId = (String) job.get("companyId");
+
 //                                String companyName = companyId.companyName ;
-                                String startdate = (String) job.get("startDate");
-                                String enddate = (String) job.get("endDate");
-                                String startime = (String) job.get("startTime");
-                                String endtime = (String) job.get("endTime");
-                                String required_workers = (String) job.get("required_workers");
-                                String shortage = (String) job.get("vacancy");
-                                String contact = (String) job.get("contact");
+                                                    String startdate = (String) job.get("startDate");
+                                                    String enddate = (String) job.get("endDate");
+                                                    String startime = (String) job.get("startTime");
+                                                    String endtime = (String) job.get("endTime");
+                                                    String required_workers = (String) job.get("required_workers");
+                                                    String shortage = (String) job.get("vacancy");
+                                                    String contact = (String) job.get("contact");
+                                                    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                                                    LocalDateTime now = LocalDateTime.now();
+                                                    try {
+                                                        date1 =new SimpleDateFormat("yyyy-MM-dd").parse( dtf.format(now));
+                                                        enddate1 = new SimpleDateFormat("yyyy-MM-dd").parse( enddate);
 
-                                jobArrayList.add(new previousjobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage,jobWage,jobId,
-                                        companyId,"JPMC",startdate, enddate, startime, endtime, required_workers,
-                                        shortage, contact));
+                                                    } catch ( ParseException e) {
+                                                        e.printStackTrace();
+                                                    }
+                                                    if(date1.after(enddate1)) {
+                                                        jobArrayList.add(new previousjobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage, jobWage, jobId,
+                                                                companyId, "JPMC", startdate, enddate, startime, endtime, required_workers,
+                                                                shortage, contact));
+                                                    }
 
-                                System.out.println(("JOb Array"+ jobArrayList));
+                                                    System.out.println(("Job Array"+ jobArrayList));
+                                                    System.out.println("JOBLIST: "+jobArrayList);
+
+                                                }else{
+                                                    System.out.println("HEYY");
+
+                                                }
+                                            }
+                                        }
+
+
+
+                                    });
+
+                                }
+
+
                             }
-                        } else {
-                            System.out.println("Error getting documents: "+task.getException());
+
+                        }else{
+                            System.out.println("Error");
                         }
-//                        Handler handler = new Handler();
-//                        handler.postDelayed(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                setJobArray(jobArrayList);
-//
-//                            }
-//                        }, 2000);
-                        setJobArray(jobArrayList);
-                        loadingDialog.dismissDialog();
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                                //startActivity(new Intent(MainActivity.this, LoginPage.class));
+
+                                setJobArray(jobArrayList);
+                                loadingDialog.dismissDialog();
+
+
+                            }
+                        }, 2000);
+
                     }
+
                 });
+//        db.collection("jobs")
+//                .get()
+//                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                    @RequiresApi(api = Build.VERSION_CODES.O)
+//                    @Override
+//                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                        if (task.isSuccessful()) {
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                System.out.println(document.getData());
+//                                Map<String, Object> job=  document.getData();
+//                                System.out.println("Json Object "+job);
+//                                String jobName = (String) job.get("jobType");
+//                                String jobDesc = (String) job.get("description");
+//                                String jobLocation = (String) job.get("location");
+//                                String jobWage = (String) job.get("wage");
+//                                String jobId = (String) document.getId();
+//                                String companyId = (String) job.get("companyId");
+////                                String companyName = companyId.companyName ;
+//                                String startdate = (String) job.get("startDate");
+//                                String enddate = (String) job.get("endDate");
+//                                String startime = (String) job.get("startTime");
+//                                String endtime = (String) job.get("endTime");
+//                                String required_workers = (String) job.get("required_workers");
+//                                String shortage = (String) job.get("vacancy");
+//                                String contact = (String) job.get("contact");
+//                                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//                                LocalDateTime now = LocalDateTime.now();
+//                                try {
+//                                     date1 =new SimpleDateFormat("yyyy-MM-dd").parse( dtf.format(now));
+//                                     enddate1 = new SimpleDateFormat("yyyy-MM-dd").parse( enddate);
+//
+//                                } catch (ParseException e) {
+//                                    e.printStackTrace();
+//                                }
+//                                if(date1.after(enddate1)) {
+//                                    jobArrayList.add(new previousjobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage, jobWage, jobId,
+//                                            companyId, "JPMC", startdate, enddate, startime, endtime, required_workers,
+//                                            shortage, contact));
+//                                }
+//                                System.out.println(("JOb Array"+ jobArrayList));
+//                            }
+//                        } else {
+//                            System.out.println("Error getting documents: "+task.getException());
+//                        }
+////                        Handler handler = new Handler();
+////                        handler.postDelayed(new Runnable() {
+////                            @Override
+////                            public void run() {
+////                                setJobArray(jobArrayList);
+////
+////                            }
+////                        }, 2000);
+//                        setJobArray(jobArrayList);
+//                        loadingDialog.dismissDialog();
+//                    }
+//                });
     }
 
 

@@ -1,7 +1,6 @@
 package com.example.kaaryakhoj;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.List;
-import java.util.Random;
 
 public class CatGridAdapter extends BaseAdapter {
 
@@ -63,9 +61,9 @@ public class CatGridAdapter extends BaseAdapter {
 
         ((TextView) view.findViewById(R.id.catName)).setText(catList.get(position).getName());
 
-        Random rnd = new Random();
-        int color = Color.argb(255, rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255));
-        view.setBackgroundColor(color);
+        //Random rnd = new Random();
+//        int color = Color.argb(255, rnd.nextInt(255),rnd.nextInt(255),rnd.nextInt(255));
+//        view.setBackgroundColor(color);
 
 
         return view;

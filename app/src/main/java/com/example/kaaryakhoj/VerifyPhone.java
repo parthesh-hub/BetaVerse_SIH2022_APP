@@ -1,29 +1,26 @@
 package com.example.kaaryakhoj;
 
-import androidx.annotation.NonNull;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Bundle;
 import android.text.TextUtils;
-
-import android.content.Intent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
-import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
@@ -215,22 +212,22 @@ public class VerifyPhone extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-
-        System.out.println("Hello");
-        System.out.println(currentUser);
-
-        if(currentUser!=null)
-        {
-            startActivity(new Intent(VerifyPhone.this, Logout.class));
-            finish();
-        }
-
-
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+//
+//        System.out.println("Hello");
+//        System.out.println(currentUser);
+//
+//        if(currentUser!=null)
+//        {
+//            startActivity(new Intent(VerifyPhone.this, Logout.class));
+//            finish();
+//        }
+//
+//
+//    }
 
 
 

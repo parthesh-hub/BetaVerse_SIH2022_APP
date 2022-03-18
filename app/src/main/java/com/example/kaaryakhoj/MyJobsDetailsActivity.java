@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,10 +40,10 @@ public class MyJobsDetailsActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     AttendanceAdapterClass attendanceAdapter;
 
-    String jobId1,startdate,enddate,userId;
+    String jobId1,startdate,enddate,userId,jobWage;
     Date startdate1,date1,enddate1,date2;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    FirebaseUser currentUser;
     //FirebaseFirestore db1 = FirebaseFirestore.getInstance();
 
     List<String> dateArray
@@ -58,7 +60,7 @@ public class MyJobsDetailsActivity extends AppCompatActivity {
         loadLocale();
         setContentView(R.layout.activity_my_jobs_upcoming_details);
 
-
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
         Button btn = findViewById(R.id.myjobs_generateQR);
         //   JobModel model = (JobModel)getIntent().getSerializableExtra("model");
         loadingDialog = new LoadingDialog(MyJobsDetailsActivity.this);
@@ -82,7 +84,7 @@ public class MyJobsDetailsActivity extends AppCompatActivity {
                         String jobName = (String) job.get("jobType");
                         String jobDesc = (String) job.get("description");
                         String jobLocation = (String) job.get("location");
-                        String jobWage = (String) job.get("wage");
+                         jobWage = (String) job.get("wage");
                         String jobId = (String) document.getId();
                         String companyId = (String) job.get("companyId");
                          startdate = (String) job.get("startDate");
@@ -149,9 +151,12 @@ public class MyJobsDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MyJobsDetailsActivity.this,Generate_QR.class);
-                intent.putExtra("UserName","Sanket");
-                intent.putExtra("UpiId","sanket@upi");
-                intent.putExtra("ImageId",jobId);
+                intent.putExtra("UserId",currentUser.getPhoneNumber());
+                intent.putExtra("JobId",jobId1);
+                intent.putExtra("StartDate",startdate);
+                intent.putExtra("EndDate",enddate);
+                intent.putExtra("Amount",jobWage);
+                intent.putExtra("AccountId","account@upi");
                 startActivity(intent);
             }
         });

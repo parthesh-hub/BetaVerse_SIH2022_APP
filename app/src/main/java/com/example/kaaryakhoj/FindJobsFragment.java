@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +30,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
@@ -47,7 +54,7 @@ public class FindJobsFragment extends Fragment {
     private ArrayList<jobDetails> currentList;
     String companyName;
     String clickedMenu="",locItem="",jobItem="";
-
+    Date date1,enddate1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -74,6 +81,7 @@ public class FindJobsFragment extends Fragment {
         db.collection("jobs")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
@@ -99,10 +107,20 @@ public class FindJobsFragment extends Fragment {
                                 String contact = (String) job.get("contact");
 
                                 System.out.println("CFB: "+companyName);
-                                jobArrayList.add(new jobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage,jobWage,jobId,
-                                        companyId,companyName,startdate, enddate, startime, endtime, required_workers,
-                                        shortage, contact));
+                                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                                LocalDateTime now = LocalDateTime.now();
+                                try {
+                                    date1 =new SimpleDateFormat("yyyy-MM-dd").parse( dtf.format(now));
+                                    enddate1 = new SimpleDateFormat("yyyy-MM-dd").parse( enddate);
 
+                                } catch ( ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                if(date1.before(enddate1) && Integer.parseInt(shortage)>0) {
+                                    jobArrayList.add(new jobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage, jobWage, jobId,
+                                            companyId, companyName, startdate, enddate, startime, endtime, required_workers,
+                                            shortage, contact));
+                                }
 
                                 System.out.println(("JOb Array"+ jobArrayList));
                             }

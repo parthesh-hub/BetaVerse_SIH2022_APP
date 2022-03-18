@@ -54,4 +54,11 @@
     <string name="bottomnav_my_jobs">నా ఉద్యోగాలు</string>
     <string name="bottomnav_find_jobs">ఉద్యోగాలను కనుగొనండి</string>
     <string name="bottomnav_skill_development">నైపుణ్యం అభివృద్ధి</string>
+    <string name="profile_page_address">రోజువారీ వేతనం</string>
+    <string name="profilepage_experience">అనుభవం</string>
+    <string name="profilepage_work_rating">పని రేటింగ్</string>
+    <string name="profilepage_phone_number">ఫోను నంబరు</string>
+    <string name="profilepage_pincode">పిన్ కోడ్</string>
+
+    <string name="bottomnav_my_profile">నా జీవన వివరణ</string>
 </resources>

@@ -6,13 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".VideoPlayer">
 
+    <!--    <TextView-->
+    <!--        android:layout_marginTop="20dp"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        android:id="@+id/filtertext"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:text="painting"-->
+    <!--        android:textSize="20sp"-->
+    <!--        android:textColor="@color/AppBarLight"-->
+    <!--        android:fontFamily="@font/oxygen_bold"-->
+    <!--        tools:ignore="MissingConstraints" />-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 

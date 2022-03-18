@@ -54,4 +54,10 @@
     <string name="bottomnav_my_jobs">મારી નોકરી</string>
     <string name="bottomnav_find_jobs">નોકરીઓ શોધો</string>
     <string name="bottomnav_skill_development">કૌશલ્ય વિકાસ</string>
+    <string name="profile_page_address">સ્થાન</string>
+    <string name="profilepage_experience">અનુભવ</string>
+    <string name="profilepage_work_rating">કાર્ય રેટિંગ</string>
+    <string name="profilepage_phone_number">ફોન નંબર</string>
+    <string name="bottomnav_my_profile">મારી પ્રોફાઈલ</string>
+    <string name="profilepage_pincode">પીન કોડ</string>
 </resources>
