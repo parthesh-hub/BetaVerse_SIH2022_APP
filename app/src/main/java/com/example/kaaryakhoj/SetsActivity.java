@@ -1,33 +1,29 @@
 package com.example.kaaryakhoj;
 
+import static com.example.kaaryakhoj.TutorialsFragment.catList;
+import static com.example.kaaryakhoj.TutorialsFragment.selected_cat_index;
+
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import static com.example.kaaryakhoj.TutorialsFragment.catList;
-import static com.example.kaaryakhoj.TutorialsFragment.selected_cat_index;
 
 public class SetsActivity extends AppCompatActivity {
 
@@ -99,10 +95,13 @@ public class SetsActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+
         if(item.getItemId() == android.R.id.home)
         {
+
             SetsActivity.this.finish();
         }
+
         return super.onOptionsItemSelected(item);
     }
 

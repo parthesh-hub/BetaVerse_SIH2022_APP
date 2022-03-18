@@ -43,9 +43,11 @@ public class Generate_QR extends AppCompatActivity {
         loadLocale();
         setContentView(R.layout.activity_generate_qr);
 
-        String UserName = getIntent().getStringExtra("UserName");
-        String UpiId = getIntent().getStringExtra("UpiId");
-        System.out.println("Username "+UserName);
+//        String UserName = getIntent().getStringExtra("UserName");
+//        String UpiId = getIntent().getStringExtra("UpiId");
+        String startDate = getIntent().getStringExtra("Startdate");
+        String endDate = getIntent().getStringExtra("Enddate");
+        //System.out.println("Username "+UserName);
         downloadQrBtn = findViewById(R.id.idDownloadQR);
         qrCodeIV = findViewById(R.id.idIVQrcode);
         jobId = getIntent().getStringExtra("ImageId");
@@ -55,8 +57,19 @@ public class Generate_QR extends AppCompatActivity {
         try{
             JSONObject obj = new JSONObject();
 
-            obj.put("UserName",UserName);
-            obj.put("UpiId",UpiId);
+            obj.put("UserName","Sanket");
+            obj.put("UpiId","bankofdombivali");
+            obj.put("UserId","+919158346466");
+            obj.put("JobId", "H9RcBladoYj6SnsrXM3Z");
+            obj.put("StartDate", "2022-03-21");
+            obj.put("EndDate", "2022-03-25");
+//            obj.put("UserName","Sanket");
+//            obj.put("UpiId","Sanket");
+//            obj.put("UserId","Sanket");
+//            obj.put("Job","Sanket");
+//            obj.put("UserName","Sanket");
+//            obj.put("UserName","Sanket");
+
 
 //                    StringWriter out = new StringWriter();
 //                    obj.write(out);

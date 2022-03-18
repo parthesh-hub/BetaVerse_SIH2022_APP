@@ -22,7 +22,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                startActivity(new Intent(MainActivity.this, LoginPage.class));
+
+                //startActivity(new Intent(MainActivity.this, LoginPage.class));
+
+                startActivity(new Intent(MainActivity.this, FirstPage.class));
+
                 finish();
             }
         }, 4000);

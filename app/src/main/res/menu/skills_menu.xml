@@ -1,17 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/Painter"
-        android:title="Painter"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        />
+        android:id="@+id/Menu1"
+        android:title="Location"
+        app:showAsAction="always"
+        android:icon="@drawable/location"
+        >
+        <menu>
+            <item
+                android:id="@+id/Loc.Clear"
+                android:title="Clear"/>
+            <item
+                android:id="@+id/Loc.Mumbai"
+                android:title="kurla">
+
+            </item>
+            <item
+                android:id="@+id/Loc.Pune"
+                android:title="ambivali"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+            <item
+                android:id="@+id/Loc.Delhi"
+                android:title="kalyan"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        </menu>
+    </item>
     <item
-        android:id="@+id/Construction"
-        android:title="Construction"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
-    <item
-        android:id="@+id/Delivery"
-        android:title="Delivery"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        android:id="@+id/Menu2"
+        android:title="JobType"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_construction"
+        >
+        <menu>
+            <item
+                android:id="@+id/Job.Clear"
+
+                android:title="Clear"/>
+            <item
+                android:id="@+id/Job.Painter"
+                android:title="carpenter">
+
+            </item>
+            <item
+                android:id="@+id/Job.Construction"
+                android:title="Construction"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+            <item
+                android:id="@+id/Job.Delivery"
+                android:title="Delivery"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+        </menu>
+    </item>
+
+
 </menu>

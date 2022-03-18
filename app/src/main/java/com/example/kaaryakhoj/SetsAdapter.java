@@ -7,10 +7,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SetsAdapter extends BaseAdapter {
 
     private int numOfSets;
-
+    public static List<String> Selectedid = new ArrayList<>();
     public SetsAdapter(int numOfSets) {
         this.numOfSets = numOfSets;
     }
@@ -51,6 +54,7 @@ public class SetsAdapter extends BaseAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(parent.getContext(), QuestionActivity.class);
                 intent.putExtra("SET", position);
+                Selectedid.add("SET"+(position+1));
                 parent.getContext().startActivity(intent);
             }
         });

@@ -5,12 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -45,7 +44,9 @@ public class FindJobsFragment extends Fragment {
     private  JobAdapter adapter;
     // Arraylist for storing data
     private ArrayList<jobDetails> jobArrayList;
+    private ArrayList<jobDetails> currentList;
     String companyName;
+    String clickedMenu="",locItem="",jobItem="";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -137,37 +138,207 @@ public class FindJobsFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         System.out.println(item.getTitle());
-        filter((String) item.getTitle());
+        String item1 = (String) item.getTitle();
+        System.out.println("Locitem"+locItem);
+        System.out.println("JobItem"+jobItem);
+        if(!item1.equals("Location") && !item1.equals("JobType")){
+
+
+            filter((String) item.getTitle());
+            return super.onOptionsItemSelected(item);
+        }else
+        {
+            clickedMenu = item1;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
     private void filter(String title) {
-        ArrayList<jobDetails> filteredlist = new ArrayList<>();
 
-        // running a for loop to compare elements.
-        for (jobDetails item : jobArrayList) {
-            // checking if the entered string matched with any item of our recycler view.
-            //System.out.println(item.getJob_name());
-            if (item.getJob_name().toLowerCase().contains(title.toLowerCase())) {
-                // if the item is matched we are
-                // adding it to our filtered list.
-                filteredlist.add(item);
+        if(clickedMenu.equals("Location"))
+        {
+            ArrayList<jobDetails> filteredlist = new ArrayList<>();
+            if(title.equals("Clear"))
+            {
+                locItem="";
+                if(jobItem.equals("") || jobItem.equals("Clear"))
+                {
+                    for (jobDetails item : jobArrayList) {
+
+                            filteredlist.add(item);
+                    }
+                    setJobArray(filteredlist);
+                }else{
+//                    ArrayList<jobDetails> filteredlist1 = new ArrayList<>();
+                    for (jobDetails item : jobArrayList) {
+
+                        if (item.getJob_name().toLowerCase().contains(jobItem.toLowerCase())) {
+
+                            filteredlist.add(item);
+                        }
+                    }if (filteredlist.isEmpty()) {
+
+                        Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+                    } else {
+
+                        System.out.println("Filtered list "+filteredlist.get(0));
+
+                        setJobArray(filteredlist);
+                        System.out.println("Hello");
+                    }
+                }
+            }else {
+                for (jobDetails item : jobArrayList) {
+                    // checking if the entered string matched with any item of our recycler view.
+                    //System.out.println(item.getJob_name());
+                    if (item.getJob_location().toLowerCase().contains(title.toLowerCase())) {
+                        // if the item is matched we are
+                        // adding it to our filtered list.
+                        filteredlist.add(item);
+                    }
+                }
+
+                if (filteredlist.isEmpty()) {
+                    // if no item is added in filtered list we are
+                    // displaying a toast message as no data found.
+                    Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    locItem = title;
+                    if (jobItem.equals("")) {
+                        setJobArray(filteredlist);
+                        System.out.println("Hello");
+                    } else {
+                        ArrayList<jobDetails> filteredlist1 = new ArrayList<>();
+                        for (jobDetails item : filteredlist) {
+
+                            if (item.getJob_name().toLowerCase().contains(jobItem.toLowerCase())) {
+
+                                filteredlist1.add(item);
+                            }
+                        }
+                        if (filteredlist1.isEmpty()) {
+
+                            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+                        } else {
+
+//                        System.out.println("Filtered list "+filteredlist.get(0));
+
+                            setJobArray(filteredlist1);
+                            System.out.println("Hello");
+                        }
+                    }
+                }
+
             }
+            }
+
+        else if(clickedMenu.equals("JobType"))
+        {
+            ArrayList<jobDetails> filteredlist = new ArrayList<>();
+            if(title.equals("Clear") || jobItem.equals("Clear"))
+            {
+                jobItem ="";
+                if(locItem.equals(""))
+                {
+                    for (jobDetails item : jobArrayList) {
+
+                        filteredlist.add(item);
+                    }
+                    setJobArray(filteredlist);
+                }else{
+
+                    for (jobDetails item : jobArrayList) {
+
+                        if (item.getJob_location().toLowerCase().contains(locItem.toLowerCase())) {
+
+                            filteredlist.add(item);
+                        }
+                    }if (filteredlist.isEmpty()) {
+
+                        Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+                    } else {
+
+//                        System.out.println("Filtered list "+filteredlist.get(0));
+
+                        setJobArray(filteredlist);
+                        System.out.println("Hello");
+                    }
+                }
+            }else {
+                for (jobDetails item : jobArrayList) {
+                    // checking if the entered string matched with any item of our recycler view.
+                    //System.out.println(item.getJob_name());
+                    if (item.getJob_name().toLowerCase().contains(title.toLowerCase())) {
+                        // if the item is matched we are
+                        // adding it to our filtered list.
+                        filteredlist.add(item);
+                    }
+                }
+
+                if (filteredlist.isEmpty()) {
+                    // if no item is added in filtered list we are
+                    // displaying a toast message as no data found.
+                    Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+                } else {
+
+                    jobItem = title;
+                    if (locItem.equals("")) {
+                        setJobArray(filteredlist);
+                        System.out.println("Hello");
+                    } else {
+                        ArrayList<jobDetails> filteredlist2 = new ArrayList<>();
+                        for (jobDetails item : filteredlist) {
+
+                            if (item.getJob_location().toLowerCase().contains(locItem.toLowerCase())) {
+
+                                filteredlist2.add(item);
+                            }
+                        }
+                        if (filteredlist2.isEmpty()) {
+
+                            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+                        } else {
+
+
+
+                            setJobArray(filteredlist2);
+                            System.out.println("Hello");
+                        }
+                    }
+                }
+            }
+
         }
-
-        if (filteredlist.isEmpty()) {
-            // if no item is added in filtered list we are
-            // displaying a toast message as no data found.
-            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
-        } else {
-            // at last we are passing that filtered
-            // list to our adapter class.
-            System.out.println("Filtered list "+filteredlist.get(0));
-
-            setJobArray(filteredlist);
-            System.out.println("Hello");
+        else{
+            setJobArray(jobArrayList);
         }
     }
+        // running a for loop to compare elements.
+//        for (jobDetails item : jobArrayList) {
+//            // checking if the entered string matched with any item of our recycler view.
+//            //System.out.println(item.getJob_name());
+//            if (item.getJob_name().toLowerCase().contains(title.toLowerCase())) {
+//                // if the item is matched we are
+//                // adding it to our filtered list.
+//                filteredlist.add(item);
+//            }
+//        }
+//
+//        if (filteredlist.isEmpty()) {
+//            // if no item is added in filtered list we are
+//            // displaying a toast message as no data found.
+//            Toast.makeText(getActivity(), "No Data Found..", Toast.LENGTH_SHORT).show();
+//        } else {
+//            // at last we are passing that filtered
+//            // list to our adapter class.
+//            System.out.println("Filtered list "+filteredlist.get(0));
+//
+//            setJobArray(filteredlist);
+//            System.out.println("Hello");
+//        }
+
 
 
     private void getCompanyDetails(String companyId) {
