@@ -4,16 +4,13 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
-import android.preference.Preference;
-import android.preference.PreferenceManager;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -46,7 +43,7 @@ public class MyJobsFragment extends Fragment {
 
         vpAdapter.addFragment(new UpcomingJobsFragment(),"Upcoming Jobs");
         vpAdapter.addFragment(new PreviousJobsFragment(),"Previous Jobs");
-
+        loadLocale();
         viewPager.setAdapter(vpAdapter);
 
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));

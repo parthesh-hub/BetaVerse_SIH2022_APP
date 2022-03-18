@@ -67,5 +67,8 @@
     <string name="bottomnav_my_jobs">My Jobs</string>
     <string name="bottomnav_find_jobs">Find Jobs</string>
     <string name="bottomnav_skill_development">Skill Development</string>
+    <string name="myjobs_cancel_job" translatable="false">Cancel Job</string>
+    <string name="previous_jobs_attendance" translatable="false">Attendance Record</string>
+    <string name="bottomnav_my_profile" translatable="false">My Profile</string>
 
 </resources>

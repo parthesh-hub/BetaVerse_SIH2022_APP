@@ -1,7 +1,6 @@
 package com.example.kaaryakhoj;
 
-public class jobDetails {
-
+public class previousjobDetails {
 
     private String job_name,job_desc;
     private String job_location;
@@ -12,10 +11,10 @@ public class jobDetails {
     private String company_id, companyname ;
     private String startdate, enddate, startime, endtime, required_workers, shortage, contact ;
 
-    public jobDetails(String job_name, String job_desc, String job_location, int job_image, String wage, String job_id,
-                      String company_id, String companyname, String startdate, String enddate, String startime,
-                      String endtime, String required_workers, String shortage, String contact)
-    {
+    public previousjobDetails(String job_name, String job_desc, String job_location, int job_image,
+                              String wage, String job_id, String company_id, String companyname,
+                              String startdate, String enddate, String startime, String endtime,
+                              String required_workers, String shortage, String contact) {
         this.job_name = job_name;
         this.job_desc = job_desc;
         this.job_location = job_location;
@@ -33,6 +32,50 @@ public class jobDetails {
         this.contact = contact;
     }
 
+
+    public String getJob_name() {
+        return job_name;
+    }
+
+    public void setJob_name(String job_name) {
+        this.job_name = job_name;
+    }
+
+    public String getJob_desc() {
+        return job_desc;
+    }
+
+    public void setJob_desc(String job_desc) {
+        this.job_desc = job_desc;
+    }
+
+    public String getJob_location() {
+        return job_location;
+    }
+
+    public void setJob_location(String job_location) {
+        this.job_location = job_location;
+    }
+
+    public int getJob_image() {
+        return job_image;
+    }
+
+    public void setJob_image(int job_image) {
+        this.job_image = job_image;
+    }
+
+    public String getWage() {
+        return wage;
+    }
+
+    public void setWage(String wage) {
+        this.wage = wage;
+    }
+
+    public String getJob_id() {
+        return job_id;
+    }
 
     public void setJob_id(String job_id) {
         this.job_id = job_id;
@@ -109,53 +152,6 @@ public class jobDetails {
     public void setContact(String contact) {
         this.contact = contact;
     }
-
-    public String getJob_name(){
-        return job_name;
-    }
-    public void setJob_name(String job_name){
-        this.job_name = job_name;
-
-    }
-    public String getJob_location(){
-        return job_location;
-    }
-    public void setJob_location(String job_location){
-        this.job_location = job_location;
-
-    }
-    public String getJob_id(){
-        return job_id;
-    }
-    public void setJob_image(String job_id){
-        this.job_id = job_id;
-
-    }
-
-    public String getJob_desc() {
-        return job_desc;
-    }
-
-    public void setJob_desc(String job_desc) {
-        this.job_desc = job_desc;
-    }
-
-    public String getWage() {
-        return wage;
-    }
-
-    public void setWage(String wage) {
-        this.wage = wage;
-    }
-
-    public int getJob_image(){
-        return job_image;
-    }
-    public void setJob_image(int job_image){
-        this.job_image = job_image;
-    }
-
-
 
     @Override
     public String toString() {

@@ -5,12 +5,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -18,6 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,9 +36,9 @@ public class PreviousJobsFragment extends Fragment {
     LoadingDialog loadingDialog;
     private RecyclerView jobRV;
     FirebaseFirestore db;
-    private  MyJobsAdapter adapter;
+    private  PreviousJobsAdapter adapter;
     // Arraylist for storing data
-    private ArrayList<jobDetails> jobArrayList;
+    private ArrayList<previousjobDetails> jobArrayList;
 
 
     @Override
@@ -88,7 +87,7 @@ public class PreviousJobsFragment extends Fragment {
                                 String shortage = (String) job.get("vacancy");
                                 String contact = (String) job.get("contact");
 
-                                jobArrayList.add(new jobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage,jobWage,jobId,
+                                jobArrayList.add(new previousjobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage,jobWage,jobId,
                                         companyId,"JPMC",startdate, enddate, startime, endtime, required_workers,
                                         shortage, contact));
 
@@ -112,8 +111,8 @@ public class PreviousJobsFragment extends Fragment {
     }
 
 
-    private void setJobArray(ArrayList<jobDetails> jobList) {
-        MyJobsAdapter courseAdapter = new MyJobsAdapter(getActivity(), jobList);
+    private void setJobArray(ArrayList<previousjobDetails> jobList) {
+        PreviousJobsAdapter courseAdapter = new PreviousJobsAdapter(getActivity(), jobList);
 
         // below line is for setting a layout manager for our recycler view.
         // here we are creating vertical list so we will provide orientation as vertical
@@ -142,10 +141,10 @@ public class PreviousJobsFragment extends Fragment {
     }
 
     private void filter(String title) {
-        ArrayList<jobDetails> filteredlist = new ArrayList<>();
+        ArrayList<previousjobDetails> filteredlist = new ArrayList<>();
 
         // running a for loop to compare elements.
-        for (jobDetails item : jobArrayList) {
+        for (previousjobDetails item : jobArrayList) {
             // checking if the entered string matched with any item of our recycler view.
             //System.out.println(item.getJob_name());
             if (item.getJob_name().toLowerCase().contains(title.toLowerCase())) {

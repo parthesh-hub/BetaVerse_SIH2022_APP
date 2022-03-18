@@ -5,564 +5,629 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".DetailsActivity"
-    android:orientation="vertical"
-    android:paddingTop="25dp"
-    android:paddingBottom="25dp"
-    >
 
-    <LinearLayout
-        android:id="@+id/details_jobTypeLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical">
+        android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/details_strjobType"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/activity_details_imgconstraint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="@string/myjobs_details_job_type"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_toEndOf="@+id/details_jobTypeLayout"
-            app:layout_constraintHorizontal_bias="0.5"
-            tools:ignore="NotSibling" />
-
-        <TextView
-            android:id="@+id/details_jobType"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/details_strjobType"
-            android:layout_marginBottom="10dp"
-            android:text="TANVI"
-            android:textAlignment="center"
-            android:textSize="25sp" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/details_jobDescLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical">
-        >
-
-        <TextView
-            android:id="@+id/details_strjobDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:layout_toEndOf="@+id/details_jobDescLayout"
-            android:text="@string/myjobs_details_job_description"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            app:layout_constraintHorizontal_bias="0.5"
-            tools:ignore="NotSibling" />
-
-        <TextView
-            android:id="@+id/details_jobDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/details_strjobDesc"
-            android:layout_marginBottom="10dp"
-            android:text="TANVI"
-            android:textAlignment="center"
-            android:textSize="25sp" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/details_companyNameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical">
-        >
-
-        <TextView
-            android:id="@+id/details_strcompanyName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="@string/myjobs_details_company_name"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_toEndOf="@+id/details_companyNameLayout"
-            app:layout_constraintHorizontal_bias="0.5"
-            tools:ignore="NotSibling" />
-
-        <TextView
-            android:id="@+id/details_companyName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="TANVI"
-            android:textAlignment="center"
-            android:layout_below="@+id/details_strcompanyName"
-            android:textSize="25sp" />
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/details_wagelocationLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-
-        <RelativeLayout
-            android:id="@+id/details_dailyWageLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             >
 
-            <TextView
-                android:id="@+id/details_strdailyWage"
+            <ImageView
+                android:id="@+id/imageView5"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@+id/details_dailyWageLayout"
-                android:text="@string/myjobs_details_daily_wage"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="0.5"
-                tools:ignore="NotSibling" />
+                android:layout_height="228dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/jobimage" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/details_companyNameLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/activity_details_imgconstraint">
 
             <TextView
-                android:id="@+id/details_dailyWage"
-                android:layout_width="match_parent"
+                android:id="@+id/details_strcompanyName"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="TANVI"
-                android:textAlignment="center"
-                android:layout_below="@+id/details_strdailyWage"
-                android:textSize="25sp" />
+                android:text="@string/myjobs_details_company_name"
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+            <TextView
+                android:id="@+id/details_companyName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="Tanvi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_strcompanyName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/details_jobTypeLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_companyNameLayout">
 
-        <RelativeLayout
+            <TextView
+                android:id="@+id/details_strjobType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/myjobs_details_job_type"
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/details_jobType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="Tanvi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_strjobType" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/details_jobDescLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_jobTypeLayout">
+
+            <TextView
+                android:id="@+id/details_strjobDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/myjobs_details_job_description"
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/details_jobDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="Tanvi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_strjobDesc" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/details_locationLayout"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            >
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_jobDescLayout">
 
             <TextView
                 android:id="@+id/details_strLocation"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@+id/details_locationLayout"
                 android:text="@string/myjobs_details_location"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="0.5"
-                tools:ignore="NotSibling" />
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/details_Location"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="TANVI"
-                android:textAlignment="center"
-                android:layout_below="@+id/details_strLocation"
-                android:textSize="25sp" />
+                android:layout_marginStart="10dp"
+                android:text="Tanvi"
+                android:fontFamily="@font/pt_serif_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toEndOf="@+id/details_strLocation"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/details_dateLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/details_startdateLayout"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            >
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_locationLayout">
 
             <TextView
                 android:id="@+id/details_strstartDate"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@+id/details_startdateLayout"
                 android:text="@string/myjobs_details_start_date"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="0.5"
-                tools:ignore="NotSibling" />
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/details_startDate"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="TANVI"
-                android:textAlignment="center"
-                android:layout_below="@+id/details_strstartDate"
-                android:textSize="25sp" />
+                android:layout_marginStart="10dp"
+                android:text="Tanvi"
+                android:fontFamily="@font/pt_serif_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toEndOf="@+id/details_strstartDate"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/details_enddateLayout"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            >
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_startdateLayout">
 
             <TextView
                 android:id="@+id/details_strendDate"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@+id/details_enddateLayout"
                 android:text="@string/myjobs_details_end_date"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="0.5"
-                tools:ignore="NotSibling" />
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/details_endDate"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="TANVI"
-                android:textAlignment="center"
-                android:layout_below="@+id/details_strendDate"
-                android:textSize="25sp" />
+                android:layout_marginStart="10dp"
+                android:text="Tanvi"
+                android:fontFamily="@font/pt_serif_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toEndOf="@+id/details_strendDate"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/details_timeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
-
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/details_starttimeLayout"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            >
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_enddateLayout">
 
             <TextView
                 android:id="@+id/details_strstartTime"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
-                android:layout_toEndOf="@+id/details_starttimeLayout"
                 android:text="@string/myjobs_details_start_time"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                app:layout_constraintHorizontal_bias="0.5"
-                tools:ignore="NotSibling" />
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/details_startTime"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="TANVI"
-                android:textAlignment="center"
-                android:layout_below="@+id/details_strstartTime"
-                android:textSize="25sp" />
+                android:layout_marginStart="10dp"
+                android:text="Tanvi"
+                android:fontFamily="@font/pt_serif_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toEndOf="@+id/details_strstartTime"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/details_endtimeLayout"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            >
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_starttimeLayout">
 
             <TextView
                 android:id="@+id/details_strendTime"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
                 android:text="@string/myjobs_details_end_time"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:textAlignment="center"
-                android:layout_toEndOf="@+id/details_enddateLayout"
-                app:layout_constraintHorizontal_bias="0.5"
-                tools:ignore="NotSibling" />
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/details_endTime"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:text="TANVI"
-                android:textAlignment="center"
-                android:layout_below="@+id/details_strendTime"
-                android:textSize="25sp" />
+                android:layout_marginStart="10dp"
+                android:text="Tanvi"
+                android:fontFamily="@font/pt_serif_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toEndOf="@+id/details_strendTime"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </RelativeLayout>
-
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/details_availabilityLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/details_strAvailabiltiy"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/details_dailyWageLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="@string/myjobs_details_availability"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_toEndOf="@+id/details_availabilityLayout"
-            app:layout_constraintHorizontal_bias="0.5"
-            tools:ignore="NotSibling" />
+            android:layout_marginTop="20dp"
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_endtimeLayout">
 
-        <TextView
-            android:id="@+id/details_availabiltiy"
+            <TextView
+                android:id="@+id/details_strdailyWage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/myjobs_details_daily_wage"
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/details_dailyWage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Tanvi"
+                android:fontFamily="@font/pt_serif_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toEndOf="@+id/details_strdailyWage"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/details_jobRequirementsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="TANVI"
-            android:textAlignment="center"
-            android:layout_below="@+id/details_strAvailabiltiy"
-            android:textSize="25sp" />
+            android:layout_marginTop="20dp"
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_dailyWageLayout">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/details_strjobRequirements"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="@string/myjobs_details_job_requirements"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/details_jobRequirements_skillrating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="Skill Rating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_strjobRequirements" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/details_jobRequirements_skillrating"
+                app:layout_constraintTop_toBottomOf="@+id/details_strjobRequirements" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="Work Rating"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_jobRequirements_skillrating" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/textView12"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="Experience"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:text="TextView"
+                app:layout_constraintStart_toEndOf="@+id/textView15"
+                app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
 
-    <LinearLayout
-        android:id="@+id/details_jobRequirementsLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical"
-        >
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <TextView
-            android:id="@+id/details_strjobRequirements"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/details_availabilityLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="@string/myjobs_details_job_requirements"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_toEndOf="@+id/details_jobRequirementsLayout"
-            app:layout_constraintHorizontal_bias="0.5"
-            tools:ignore="NotSibling" />
+            android:layout_marginTop="20dp"
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_jobRequirementsLayout">
 
-        <TextView
-            android:id="@+id/details_jobRequirements"
+            <TextView
+                android:id="@+id/details_strAvailabiltiy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/myjobs_details_availability"
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/details_Availabiltiy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Tanvi"
+                android:fontFamily="@font/pt_serif_bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.081"
+                app:layout_constraintStart_toEndOf="@+id/details_strAvailabiltiy"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/details_jobAddressLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="TANVI"
-            android:textAlignment="center"
-            android:layout_below="@+id/details_strjobRequirements"
-            android:textSize="25sp" />
+            android:layout_marginTop="20dp"
+            android:paddingStart="30dp"
+            android:paddingEnd="30dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_availabilityLayout">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/details_strjobAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/myjobs_details_address"
+                android:fontFamily="@font/pt_serif_bold"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <TextView
+                android:id="@+id/details_jobAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="Tanvi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.024"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/details_strjobAddress" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
-        android:id="@+id/details_jobAddressLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/details_strjobAddress"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/details_jobContactLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="@string/myjobs_details_address"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_toEndOf="@+id/details_jobContactLayout"
-            app:layout_constraintHorizontal_bias="0.5"
-            tools:ignore="NotSibling" />
+            android:layout_marginTop="20dp"
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_jobAddressLayout">
 
-        <TextView
-            android:id="@+id/details_jobAddress"
+            <TextView
+                android:id="@+id/details_strjobContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="@string/myjobs_details_contact"
+                android:textColor="@color/AppBarLight"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/details_jobContact"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="Tanvi"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.027"
+                app:layout_constraintStart_toEndOf="@+id/details_strjobContact"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/details_applybtnLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="TANVI"
-            android:textAlignment="center"
-            android:layout_below="@+id/details_strjobAddress"
-            android:textSize="25sp" />
+            android:layout_marginTop="20dp"
+            android:paddingStart="30dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="30dp"
+            android:paddingBottom="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_jobContactLayout">
 
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/details_jobContactLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="vertical"
-        >
-
-        <TextView
-            android:id="@+id/details_strjobContact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="5dp"
-            android:text="@string/myjobs_details_contact"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:textAlignment="center"
-            android:layout_toEndOf="@+id/details_jobContactLayout"
-            app:layout_constraintHorizontal_bias="0.5"
-            tools:ignore="NotSibling" />
-
-        <TextView
-            android:id="@+id/details_jobContact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:text="TANVI"
-            android:textAlignment="center"
-            android:layout_below="@+id/details_strjobContact"
-            android:textSize="25sp" />
-
-    </LinearLayout>
+            <Button
+                android:id="@+id/details_applybtn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="@string/job_apply_btn"
+                android:background="@drawable/loginpagebtns"
+                android:fontFamily="@font/oxygen"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/job_apply_btn" />
-
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cancel" />
-
-
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

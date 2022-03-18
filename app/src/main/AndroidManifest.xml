@@ -13,7 +13,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Kaaryakhoj">
         <activity
-
+            android:name=".ProfilePageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PreviousJobsDetailsActivity"
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".previousjobDetails" -->
+        <!-- android:exported="false" /> -->
+        <activity
             android:name=".ScoreActivity"
             android:exported="false" />
         <activity
@@ -30,7 +37,7 @@
             android:exported="false" />
         <activity
             android:name=".TutorialVideoList"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".MyJobsDetailsActivity"
             android:exported="false" />

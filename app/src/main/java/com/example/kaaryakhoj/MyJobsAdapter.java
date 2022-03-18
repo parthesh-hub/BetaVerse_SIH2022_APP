@@ -7,10 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.Viewholder> {
 
@@ -48,7 +48,7 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.Viewholder
         holder.jobName.setText(model.getJob_name());
         holder.jobLocation.setText(model.getJob_location());
         holder.jobImage.setImageResource(model.getJob_image());
-        holder.companyName.setText(model.getCompanyname());
+//       holder.companyName.setText(model.getCompanyname());
         holder.startDate.setText(model.getStartdate());
         holder.endDate.setText(model.getEnddate());
         holder.dailyWage.setText(model.getWage());
@@ -61,7 +61,7 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.Viewholder
 
                 Intent intent = new Intent(context,MyJobsDetailsActivity.class);
                 intent.putExtra("JobId",model.getJob_id());
-                intent.putExtra("CompanyName",model.getCompanyname());
+            //    intent.putExtra("CompanyName",model.getCompanyname());
                 context.startActivity(intent);
                 //Toast.makeText(context,model.getJob_id(),Toast.LENGTH_SHORT).show();
             }
@@ -84,13 +84,13 @@ public class MyJobsAdapter extends RecyclerView.Adapter<MyJobsAdapter.Viewholder
 
         public Viewholder(@NonNull View itemView) {
             super(itemView);
-            jobName = itemView.findViewById(R.id.jobName);
-            jobLocation = itemView.findViewById(R.id.jobLocation);
-            jobImage = itemView.findViewById(R.id.jobImage);
-            companyName = itemView.findViewById(R.id.companyName);
-            startDate = itemView.findViewById(R.id.startDate);
-            endDate = itemView.findViewById(R.id.endDate);
-            dailyWage = itemView.findViewById(R.id.dailyWage);
+            jobName = itemView.findViewById(R.id.cardjobType);
+            jobLocation = itemView.findViewById(R.id.cardjobLocation);
+            jobImage = itemView.findViewById(R.id.cardjobImage);
+//            companyName = itemView.findViewById(R.id.companyName);
+            startDate = itemView.findViewById(R.id.StartdateJobcard);
+            endDate = itemView.findViewById(R.id.EnddateJobcard);
+            dailyWage = itemView.findViewById(R.id.dailyWageJobcard);
 
         }
     }

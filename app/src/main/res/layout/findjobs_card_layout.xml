@@ -25,204 +25,168 @@
         measurements with previous versions.
     -->
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="15dp"
+        android:paddingBottom="10dp"
         tools:context=".FirstPage">
 
-        <!--ImageVIew to display our Course Image-->
+
         <ImageView
-            android:id="@+id/jobImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:contentDescription="@string/app_name"
-            android:padding="5dp"
-            android:src="@drawable/jobimage" />
+            android:id="@+id/cardjobImage"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/jobimage" />
 
-        <!--Text View to display Course Name-->
-
-        <!--Text VIew to display COurse Rating-->
-        <!--Image used in present in drawable folder-->
-
-
-        <TextView
-            android:id="@+id/jobName"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/jobCardconstraintLayout1"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toEndOf="@id/jobImage"
-            android:text="@string/job_location"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/jobLocation"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/jobName"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_toEndOf="@id/jobImage"
-            android:drawablePadding="2dp"
-            android:textSize="15sp"
-            android:text="@string/job_location"
-            android:textColor="@color/black" />
-
-        <RelativeLayout
-            android:id="@+id/companynamelayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/jobImage"
-            android:layout_marginBottom="5dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:textAlignment="center">
+            app:layout_constraintEnd_toStartOf="@+id/cardjobImage"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/strcompanyName"
+                android:id="@+id/cardjobLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:textAlignment="center"
-                android:textSize="15sp"
-                android:layout_toEndOf="@id/companynamelayout"
-                android:drawablePadding="2dp"
-                android:textStyle="bold"
-                android:text="@string/card_strjob_companyName"
-                android:textColor="@color/black"
-                tools:ignore="NotSibling" />
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="Parel"
+                android:textSize="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardjobType" />
 
             <TextView
-                android:id="@+id/companyName"
+                android:id="@+id/cardjobType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:textSize="15sp"
-                android:layout_toEndOf="@id/strcompanyName"
-                android:drawablePadding="2dp"
-                android:text="@string/job_companyName"
-                android:textColor="@color/black" />
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/pt_serif_bold"
+                android:text="Construction"
+                android:textSize="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/startdateLayout"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/jobCardconstraintLayout2"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/companynamelayout"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/cardjobImage"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jobCardconstraintLayout1">
 
             <TextView
-                android:id="@+id/strstartDate"
+                android:id="@+id/strStartdateJobcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/startdateLayout"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/playfair_display"
                 android:text="@string/card_strjob_startdate"
-                android:layout_marginStart="10dp"
-                android:drawablePadding="2dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
-                tools:ignore="NotSibling" />
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/startDate"
+                android:id="@+id/StartdateJobcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/strstartDate"
-                android:drawablePadding="2dp"
-                android:textSize="15sp"
-                android:text="@string/job_startdate"
-                android:textColor="@color/black"
-                tools:ignore="NotSibling" />
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/playfair_display"
+                android:text="TextView"
+                android:textSize="15dp"
+                app:layout_constraintStart_toEndOf="@+id/strStartdateJobcard"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/endDateLayout"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/jobCardconstraintLayout3"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/startdateLayout"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:layout_marginBottom="5dp">
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/cardjobImage"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jobCardconstraintLayout2">
 
             <TextView
-                android:id="@+id/strendDate"
+                android:id="@+id/EnddateJobcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/endDateLayout"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/playfair_display"
+                android:text="TextView"
+                android:textSize="15dp"
+                app:layout_constraintStart_toEndOf="@+id/strEnddateJobcard"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/strEnddateJobcard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/playfair_display"
                 android:text="@string/card_strjob_enddate"
-                android:textColor="@color/black"
-                android:layout_marginStart="10dp"
-                android:drawablePadding="2dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
-                tools:ignore="NotSibling" />
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-            <TextView
-                android:id="@+id/endDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/strendDate"
-                android:drawablePadding="2dp"
-                android:text="@string/job_enddate"
-                android:layout_marginStart="10dp"
-                android:textSize="15sp"
-                android:textColor="@color/black" />
-
-        </RelativeLayout>
-
-
-        <RelativeLayout
-            android:id="@+id/dailywageLayout"
-            android:layout_width="match_parent"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/jobCardconstraintLayout4"
+            android:layout_width="210dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/endDateLayout"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:layout_marginBottom="5dp"
-            >
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintEnd_toStartOf="@+id/cardjobImage"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/jobCardconstraintLayout3">
 
             <TextView
-                android:id="@+id/strdailyWage"
+                android:id="@+id/strdailyWageJobcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/dailywageLayout"
-                android:drawablePadding="2dp"
-                android:textSize="15sp"
-                android:textStyle="bold"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/playfair_display"
                 android:text="@string/card_strjob_dailywage"
-                android:textColor="@color/black"
-                tools:ignore="NotSibling" />
+                android:textSize="15dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/dailyWage"
+                android:id="@+id/dailyWageJobcard"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_toEndOf="@id/strdailyWage"
-                android:drawablePadding="2dp"
-                android:text="@string/job_dailywage"
-                android:textColor="@color/black"
-                android:textSize="15sp" />
-        </RelativeLayout>
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/playfair_display"
+                android:text="TextView"
+                android:textSize="15dp"
+                app:layout_constraintStart_toEndOf="@+id/strdailyWageJobcard"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>
