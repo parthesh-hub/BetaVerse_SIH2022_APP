@@ -209,6 +209,7 @@ public class DetailsActivity extends AppCompatActivity {
         city.put("UserId", userId);
         city.put("StartDate", startdate);
         city.put("EndDate", enddate);
+        city.put("status","ongoing");
 
         db.collection("jobRecords")
                 .add(city)

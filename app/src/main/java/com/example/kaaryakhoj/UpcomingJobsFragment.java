@@ -136,7 +136,12 @@ public class UpcomingJobsFragment extends Fragment {
                                                             } catch ( ParseException e) {
                                                                 e.printStackTrace();
                                                             }
-                                                            if(date1.before(enddate1) || date1.equals(enddate1)) {
+                                                            String status = "";
+                                                            if(jobr.get("status")!=null)
+                                                            {
+                                                                status = (String) jobr.get("status");
+                                                            }
+                                                            if((date1.before(enddate1) || date1.equals(enddate1)) && status.equals("ongoing")) {
                                                                 jobArrayList.add(new jobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage, jobWage, jobId,
                                                                         companyId, "JPMC", startdate, enddate, startime, endtime, required_workers,
                                                                         shortage, contact));
