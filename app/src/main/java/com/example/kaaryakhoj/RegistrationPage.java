@@ -1,33 +1,29 @@
 package com.example.kaaryakhoj;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.auth.FirebaseAuth;
-
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -41,12 +37,14 @@ public class RegistrationPage extends AppCompatActivity {
     private FirebaseFirestore db;
     private PhoneAuthCredential credential;
     private String userID, Code, verificationId,Phone;
+    LoadingDialog loadingDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
         getSupportActionBar().hide(); // hide the title bar
+        loadingDialog = new LoadingDialog(RegistrationPage.this);
         loadLocale();
         setContentView(R.layout.activity_registration_page);
 
@@ -58,32 +56,35 @@ public class RegistrationPage extends AppCompatActivity {
         aadharNumber = findViewById(R.id.registrationpage_aadhar);
         registerbtn = findViewById(R.id.registrationpage_registerbtn);
 
-//        credential = getIntent().getParcelableExtra("credential");
-//        verificationId = getIntent().getStringExtra("verificationId");
-//        Code = getIntent().getStringExtra("Code");
-//        System.out.println("Registration Page Hello"+verificationId + Code);
-//        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
-//        System.out.println("Credential: "+credential);
-//        System.out.println("Inside click");
-//
-//        System.out.println("After signin");
+        credential = getIntent().getParcelableExtra("credential");
+        verificationId = getIntent().getStringExtra("verificationId");
+        Code = getIntent().getStringExtra("Code");
+        System.out.println("Registration Page Hello"+verificationId + Code);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
+        System.out.println("Credential: "+credential);
+        System.out.println("Inside click");
+
+        System.out.println("After signin");
 
         registerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-//                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
-//                System.out.println("Credential: "+credential);
-//                System.out.println("Inside click");
-//                signinbyCredentials(credential);
-//                System.out.println("After signin");
+                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
+                System.out.println("Credential: "+credential);
+                System.out.println("Inside click");
+
+                loadingDialog.startLoadingDialog();
+                signinbyCredentials(credential);
+
+                System.out.println("After signin");
                 signinbyCredentials(credential);
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
 //                        userID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-//                        Phone = Objects.requireNonNull(mAuth.getCurrentUser()).getPhoneNumber();
+                        Phone = Objects.requireNonNull(mAuth.getCurrentUser()).getPhoneNumber();
                         System.out.println("After userID");
                         System.out.println("Registration Page UserID"+userID);
                         String firstname = FirstName.getText().toString();
@@ -92,11 +93,16 @@ public class RegistrationPage extends AppCompatActivity {
                         String address = Address.getText().toString();
                         String aadhar = aadharNumber.getText().toString();
                         Map<String,Object> user =new HashMap<>();
-                        user.put("FirstName", firstname);
-                        user.put("LastName", lastname);
+                        user.put("Firstname", firstname);
+                        user.put("Lastname", lastname);
                         user.put("Address", address);
                         user.put("Pincode",pincode);
                         user.put("AadharNumber", aadhar);
+                        user.put("Phone Number", Phone);
+                        user.put("UpiId","worker@upi");
+                        user.put("overall_rating","0");
+                        user.put("experience","0");
+                        user.put("Skills Rating","");
 
 
                         db.collection("user").document(Phone)
@@ -106,6 +112,7 @@ public class RegistrationPage extends AppCompatActivity {
                                     public void onSuccess(Void aVoid) {
                                         Toast.makeText(RegistrationPage.this,"Success",Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(RegistrationPage.this, LoginPage.class));
+                                        finish();
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
@@ -119,52 +126,9 @@ public class RegistrationPage extends AppCompatActivity {
                         finish();
                     }
                 }, 2000);
-//                userID = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
-//
-//                System.out.println("After userID");
-//                System.out.println("Registration Page UserID"+userID);
-//                String name = Name.getText().toString();
-//                System.out.println("Registration Page Name"+name);
-//                String address = Name.getText().toString();
-//                String aadhar = aadharNumber.getText().toString();
-//                Map<String,Object> user =new HashMap<>();
-//                user.put("Name", name);
-//                user.put("Address", address);
-//                user.put("Aadhar Number", aadhar);
-//
-//
-//                db.collection("user").document(userID)
-//                        .set(user)
-//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                            @Override
-//                            public void onSuccess(Void aVoid) {
-//                                Toast.makeText(RegistrationPage.this,"Success",Toast.LENGTH_SHORT).show();
-//                                startActivity(new Intent(RegistrationPage.this, LoginPage.class));
-//                            }
-//                        })
-//                        .addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(RegistrationPage.this,"Failure",Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
-//
-
-//                db.collection("user")
-//                        .add(user)
-//                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                            @Override
-//                            public void onSuccess(DocumentReference documentReference) {
-//                                Toast.makeText(RegistrationPage.this,"Success",Toast.LENGTH_SHORT).show();
-//                            }
-//                        })
-//                        .addOnFailureListener(new OnFailureListener() {
-//                            @Override
-//                            public void onFailure(@NonNull Exception e) {
-//                                Toast.makeText(RegistrationPage.this,"Failure",Toast.LENGTH_SHORT).show();
-//                            }
-//                        });
+                loadingDialog.dismissDialog();
             }
+
         });
 
 

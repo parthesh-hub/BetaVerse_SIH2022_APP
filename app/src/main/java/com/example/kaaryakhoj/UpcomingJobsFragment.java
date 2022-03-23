@@ -144,7 +144,7 @@ public class UpcomingJobsFragment extends Fragment {
                                                             if((date1.before(enddate1) || date1.equals(enddate1)) && status.equals("ongoing")) {
                                                                 jobArrayList.add(new jobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage, jobWage, jobId,
                                                                         companyId, "JPMC", startdate, enddate, startime, endtime, required_workers,
-                                                                        shortage, contact));
+                                                                        shortage, contact,""));
                                                             }
                                                             System.out.println(("Job Array"+ jobArrayList));
                                                             System.out.println("JOBLIST: "+jobArrayList);

@@ -66,7 +66,7 @@ public class LoginPage extends AppCompatActivity {
         getOtpbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                System.out.println("Reg Otpbtn clicked ");
                 getOtpbtn.setEnabled(false);
                 db = FirebaseFirestore.getInstance();
                 DocumentReference docRef = db.collection("user").document("+91"+entered_phone.getText().toString());
@@ -82,7 +82,8 @@ public class LoginPage extends AppCompatActivity {
                                 sendVerificationCode(entered_phone.getText().toString());
                             } else {
 //                                        System.out.println("Document Snapshot data "+ document.getData());
-                               Toast.makeText(LoginPage.this, "User Does Not Exist",Toast.LENGTH_SHORT).show();
+                                System.out.println("Inside else");
+                                Toast.makeText(LoginPage.this, "User Does Not Exist",Toast.LENGTH_LONG).show();
 
                             }
                         }
@@ -111,7 +112,7 @@ public class LoginPage extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginPage.this,FirstPage.class);
+                Intent intent = new Intent(LoginPage.this,VerifyPhone.class);
                 startActivity(intent);
             }
         });
@@ -207,17 +208,17 @@ public class LoginPage extends AppCompatActivity {
 
 
     // getOTP
-private void sendVerificationCode(String phoneNumber) {
+    private void sendVerificationCode(String phoneNumber) {
         System.out.println("inside sendveri");
-    PhoneAuthOptions options =
-            PhoneAuthOptions.newBuilder(mAuth)
-                    .setPhoneNumber("+91"+phoneNumber)       // Phone number to verify
-                    .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                    .setActivity(this)                 // Activity (for callback binding)
-                    .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
-                    .build();
-    PhoneAuthProvider.verifyPhoneNumber(options);
-}
+        PhoneAuthOptions options =
+                PhoneAuthOptions.newBuilder(mAuth)
+                        .setPhoneNumber("+91"+phoneNumber)       // Phone number to verify
+                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+                        .setActivity(this)                 // Activity (for callback binding)
+                        .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                        .build();
+        PhoneAuthProvider.verifyPhoneNumber(options);
+    }
 
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks
             mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -250,7 +251,7 @@ private void sendVerificationCode(String phoneNumber) {
     };
 
     private void verifyCode(String Code) {
-      PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId,Code);
         System.out.println("Verify phone : "+verificationId);
         System.out.println("Code : "+Code);
         System.out.println("OTP entered : "+entered_otp.getText().toString());
@@ -258,9 +259,9 @@ private void sendVerificationCode(String phoneNumber) {
         if (!(Code.equals(entered_otp.getText().toString()))){
             Toast.makeText(LoginPage.this,"OTP Invalid",Toast.LENGTH_SHORT).show();
         }
-
-
-        signinbyCredentials(credential);
+        else{
+            signinbyCredentials(credential);
+        }
     }
 
     private void signinbyCredentials(PhoneAuthCredential credential) {

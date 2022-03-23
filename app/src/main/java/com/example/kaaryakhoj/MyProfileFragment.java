@@ -23,7 +23,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Locale;
@@ -32,16 +31,17 @@ import java.util.Map;
 public class MyProfileFragment extends Fragment {
 
     FirebaseUser currentUser;
+    FirebaseAuth mAuth = FirebaseAuth.getInstance();
     View layoutview;
     TextView profilepage_name, profilepage_address, profilepage_pincode, profilepage_upi, profilepage_phone,
             getProfilepage_experience, profilepage_skillrating ;
     RatingBar profilepage_workrating;
-    Button logoutbtn;
+    Button logoutbtn, chngphotobtn;
     String dbfirstname, dblastname, dbaddress, dbpincode, dbupi, dbphone, dbexp;
     String dbworkrating, dbpro;
     FirebaseFirestore db;
     LoadingDialog loadingDialog;
-    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class MyProfileFragment extends Fragment {
         loadingDialog = new LoadingDialog(getActivity());
         loadLocale();
 
-        layoutview = inflater.inflate(R.layout.fragment_my_profile, container, false);
+        layoutview = inflater.inflate(R.layout.activity_profile_page, container, false);
 
         profilepage_name = (TextView) layoutview.findViewById(R.id.profilepage_name);
         profilepage_address = (TextView) layoutview.findViewById(R.id.profilepage_address);
@@ -61,10 +61,21 @@ public class MyProfileFragment extends Fragment {
         profilepage_phone = (TextView) layoutview.findViewById(R.id.profilepage_phone);
         profilepage_workrating = (RatingBar) layoutview.findViewById(R.id.profilepage_workRating);
         getProfilepage_experience = (TextView) layoutview.findViewById(R.id.profilepage_experience);
-        profilepage_skillrating = (TextView) layoutview.findViewById(R.id.profilepage_skillrating);
+//        profilepage_skillrating = (TextView) layoutview.findViewById(R.id.profilepage_skillrating);
         logoutbtn = (Button) layoutview.findViewById(R.id.profilepage_logoutbtn);
-
+        //chngphotobtn = (Button) layoutview.findViewById(R.id.changeprofilephotobutton);
         getDetails(currentUser.getPhoneNumber());
+
+
+
+        logoutbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                startActivity(new Intent(getActivity(), LoginPage.class));
+                getActivity().finish();
+            }
+        });
 
 
         return layoutview;
@@ -96,14 +107,14 @@ public class MyProfileFragment extends Fragment {
                         dbexp = (String) user.get("experience");
                         dbpro = (String) user.get("Skills Rating");
 
-                        try {
-                            jsonObject[0] = new JSONObject(dbpro);
-//                            System.out.println("JSONOBJECT: "+ jsonObject[0].getJSONObject("Painting"));
-//                            profilepage_skillrating.setText(jsonObject[0].toString());
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            jsonObject[0] = new JSONObject(dbpro);
+////                            System.out.println("JSONOBJECT: "+ jsonObject[0].getJSONObject("Painting"));
+////                            profilepage_skillrating.setText(jsonObject[0].toString());
+//
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
 
                     }
                 } else {
@@ -114,8 +125,13 @@ public class MyProfileFragment extends Fragment {
                 profilepage_pincode.setText(dbpincode);
                 profilepage_upi.setText(dbupi);
                 profilepage_phone.setText(phoneno);
-                Integer rating = Integer.parseInt(dbworkrating);
-                profilepage_workrating.setRating(rating);
+                try{
+                    Integer rating = Integer.parseInt(dbworkrating);
+                    profilepage_workrating.setRating(rating);}
+                catch (Exception e){
+                    profilepage_workrating.setRating(0);
+                }
+
                 getProfilepage_experience.setText(dbexp);
 
 
@@ -123,69 +139,10 @@ public class MyProfileFragment extends Fragment {
 
             }
         });
-        logoutbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                startActivity(new Intent(getContext(), LoginPage.class));
-                getActivity().finish();
-            }
-        });
 
     }
 
-//    private void showChangeLanguageDialog() {
-//
-//        //array of languages to display in dialogbox
-//        final String[] listItems = {"English", "हिन्दी", "मराठी", "ગુજરાતી", "தமிழ்", "తెలుగు"};
-//
-//        AlertDialog.Builder mBuider = new AlertDialog.Builder(getContext());
-//        mBuider.setTitle("Choose Language...");
-//        mBuider.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                if (i==0){
-//                    //English
-//                    setLocale("en");
-//                    recreate();
-//                }
-//                else if (i==1){
-//                    //hindi
-//                    setLocale("hi");
-//                    recreate();
-//                }
-//                else if (i==2) {
-//                    //marathi
-//                    setLocale("mr");
-//                    recreate();
-//                }
-//                else if (i==3) {
-//                    //gujarati
-//                    setLocale("gu");
-//                    recreate();
-//                }
-//                else if (i==4) {
-//                    //tamil
-//                    setLocale("ta");
-//                    recreate();
-//                }
-//                else if (i==5) {
-//                    //telugu
-//                    setLocale("te");
-//                    recreate();
-//                }
-//
-//                //dismiss alert dialog box when language is selected
-//                dialogInterface.dismiss();
-//            }
-//        });
-//
-//        AlertDialog mDialog = mBuider.create();
-//        //show alert dialog
-//        mDialog.show();
-//
-//    }
+
 
     private void setLocale(String lang) {
         Locale locale = new Locale(lang);
@@ -207,10 +164,6 @@ public class MyProfileFragment extends Fragment {
         String language = prefs.getString("My_Lang","");
         setLocale(language);
     }
-
-
-
-
 
 }
 

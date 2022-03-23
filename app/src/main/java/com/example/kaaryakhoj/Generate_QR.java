@@ -54,32 +54,23 @@ public class Generate_QR extends AppCompatActivity {
         //System.out.println("Username "+UserName);
         downloadQrBtn = findViewById(R.id.idDownloadQR);
         qrCodeIV = findViewById(R.id.idIVQrcode);
-        jobId = getIntent().getStringExtra("ImageId");
+       // jobId = getIntent().getStringExtra("ImageId");
 
         MultiFormatWriter mWriter = new MultiFormatWriter();
-
+        System.out.println("Hello inside QR");
         try{
             JSONObject obj = new JSONObject();
-
+            System.out.println("Hello inside Test");
             obj.put("UserId",userId);
             obj.put("JobId",jobId);
             obj.put("AccountId",accountid);
             obj.put("StartDate", startDate);
             obj.put("EndDate", endDate);
             obj.put("Amount", amount);
-//            obj.put("UserName","Sanket");
-//            obj.put("UpiId","Sanket");
-//            obj.put("UserId","Sanket");
-//            obj.put("Job","Sanket");
-//            obj.put("UserName","Sanket");
-//            obj.put("UserName","Sanket");
-
-
-//                    StringWriter out = new StringWriter();
-//                    obj.write(out);
+            System.out.println("Hello inside Test" + obj);
 
             String text = obj.toString();
-            System.out.print(text);
+            System.out.print("Text"+text);
             BitMatrix mMatrix = mWriter.encode(text, BarcodeFormat.QR_CODE,400,400);
 
             BarcodeEncoder mEncoder = new BarcodeEncoder();

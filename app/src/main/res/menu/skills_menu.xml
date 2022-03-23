@@ -2,6 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+
     <item
         android:id="@+id/Menu1"
         android:title="Location"
@@ -14,16 +15,20 @@
                 android:title="Clear"/>
             <item
                 android:id="@+id/Loc.Mumbai"
-                android:title="kurla">
+                android:title="Mumbai">
 
             </item>
             <item
                 android:id="@+id/Loc.Pune"
-                android:title="ambivali"
+                android:title="Pune"
                 app:actionViewClass="androidx.appcompat.widget.SearchView"/>
             <item
                 android:id="@+id/Loc.Delhi"
-                android:title="kalyan"
+                android:title="Delhi"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+            <item
+                android:id="@+id/Loc.Chennai"
+                android:title="Chennai"
                 app:actionViewClass="androidx.appcompat.widget.SearchView"/>
         </menu>
     </item>
@@ -40,9 +45,12 @@
                 android:title="Clear"/>
             <item
                 android:id="@+id/Job.Painter"
-                android:title="carpenter">
+                android:title="Painter"/>
 
-            </item>
+            <item
+                android:id="@+id/Job.Carpenter"
+                android:title="Carpenter"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
             <item
                 android:id="@+id/Job.Construction"
                 android:title="Construction"
@@ -51,8 +59,25 @@
                 android:id="@+id/Job.Delivery"
                 android:title="Delivery"
                 app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+            <item
+                android:id="@+id/Job.Electrician"
+                android:title="Electrician"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+            <item
+                android:id="@+id/Job.Plumber"
+                android:title="Plumber"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+            <item
+                android:id="@+id/Job.Tiling"
+                android:title="Tiling"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
         </menu>
     </item>
-
+    <item
+        android:id="@+id/Bell"
+        android:title="Bell"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_notifications_24"
+        />
 
 </menu>

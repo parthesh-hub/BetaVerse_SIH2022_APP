@@ -10,11 +10,11 @@ public class jobDetails {
     private String job_id;
     // newly added
     private String company_id, companyname ;
-    private String startdate, enddate, startime, endtime, required_workers, shortage, contact ;
+    private String startdate, enddate, startime, endtime, required_workers, shortage, contact,city ;
 
     public jobDetails(String job_name, String job_desc, String job_location, int job_image, String wage, String job_id,
                       String company_id, String companyname, String startdate, String enddate, String startime,
-                      String endtime, String required_workers, String shortage, String contact)
+                      String endtime, String required_workers, String shortage, String contact,String city)
     {
         this.job_name = job_name;
         this.job_desc = job_desc;
@@ -31,6 +31,7 @@ public class jobDetails {
         this.required_workers = required_workers;
         this.shortage = shortage;
         this.contact = contact;
+        this.city = city;
     }
 
 
@@ -155,6 +156,12 @@ public class jobDetails {
         this.job_image = job_image;
     }
 
+    public String getJob_city(){
+        return city;
+    }
+    public void setJob_city(String city){
+        this.city = city;
+    }
 
 
     @Override

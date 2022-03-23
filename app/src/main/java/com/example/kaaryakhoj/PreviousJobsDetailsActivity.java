@@ -78,7 +78,7 @@ public class PreviousJobsDetailsActivity extends AppCompatActivity {
 
                         jobDetails model = new jobDetails(jobName, jobDesc, jobLocation, R.drawable.jobimage,jobWage,jobId,
                                 companyId,companyName,startdate, enddate, startime, endtime, required_workers,
-                                shortage, contact);
+                                shortage, contact,"");
 
 
                         setDisplay(model);
